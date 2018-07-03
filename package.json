@@ -1,0 +1,12 @@
+{
+  "name": "vanilla-dom",
+  "version": "0.0.1",
+  "description": "HTML templates compiler for vanilla performance dynamic dom",
+  "main": "compiler.js",
+  "repository": "https://github.com/mgibas/vanilla-dom.git",
+  "author": "Maciej Gibas <gibasmaciej@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^23.2.0"
+  }
+}

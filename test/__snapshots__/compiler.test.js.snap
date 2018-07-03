@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`compiler on compile returns provided source 1`] = `"let x=5;"`;
+
+exports[`compiler on compile script contains marked template literal returns provided source 1`] = `"let x=5;"`;
+
+exports[`compiler on compile with source without template literal returns provided source 1`] = `"let x=5;"`;
