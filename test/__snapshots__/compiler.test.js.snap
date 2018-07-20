@@ -1,7 +1,152 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`compiler on compile returns provided source 1`] = `"let x=5;"`;
+exports[`compiler on compile empty source 1`] = `
+"export default (domRoot, state) => {
+          
+    }"
+`;
 
-exports[`compiler on compile script contains marked template literal returns provided source 1`] = `"let x=5;"`;
+exports[`compiler on compile multiple tag nodes 1`] = `
+"export default (domRoot, state) => {
+      
+      (() => {
+        let domRoot_el = document.createElement('div')
+        COMPILED-ATTRIBUTES
+            
 
-exports[`compiler on compile with source without template literal returns provided source 1`] = `"let x=5;"`;
+        domRoot.appendChild(domRoot_el)
+      })();
+    
+      (() => {
+        let domRoot_el = document.createElement('p')
+        COMPILED-ATTRIBUTES
+            
+
+        domRoot.appendChild(domRoot_el)
+      })();
+        
+    }"
+`;
+
+exports[`compiler on compile nested nodes 1`] = `
+"export default (domRoot, state) => {
+      
+      (() => {
+        let tel = document.createTextNode(\`
+        \`)
+        domRoot.appendChild(tel)
+      })();
+    
+      (() => {
+        let domRoot_el = document.createElement('div')
+        COMPILED-ATTRIBUTES
+        
+      (() => {
+        let tel = document.createTextNode(\`
+          \`)
+        domRoot_el.appendChild(tel)
+      })();
+    
+      (() => {
+        let domRoot_el_el = document.createElement('p')
+        COMPILED-ATTRIBUTES
+        
+      (() => {
+        let tel = document.createTextNode(\`hello\`)
+        domRoot_el_el.appendChild(tel)
+      })();
+        
+
+        domRoot_el.appendChild(domRoot_el_el)
+      })();
+    
+      (() => {
+        let tel = document.createTextNode(\`
+        \`)
+        domRoot_el.appendChild(tel)
+      })();
+        
+
+        domRoot.appendChild(domRoot_el)
+      })();
+    
+      (() => {
+        let tel = document.createTextNode(\`
+      \`)
+        domRoot.appendChild(tel)
+      })();
+        
+    }"
+`;
+
+exports[`compiler on compile single tag node 1`] = `
+"export default (domRoot, state) => {
+      
+      (() => {
+        let domRoot_el = document.createElement('div')
+        COMPILED-ATTRIBUTES
+            
+
+        domRoot.appendChild(domRoot_el)
+      })();
+        
+    }"
+`;
+
+exports[`compiler on compile single tag node with attributes 1`] = `
+"export default (domRoot, state) => {
+      
+      (() => {
+        let domRoot_el = document.createElement('div')
+        COMPILED-ATTRIBUTES
+            
+
+        domRoot.appendChild(domRoot_el)
+      })();
+        
+    }"
+`;
+
+exports[`compiler on compile text nodes 1`] = `
+"export default (domRoot, state) => {
+      
+      (() => {
+        let tel = document.createTextNode(\`
+        \`)
+        domRoot.appendChild(tel)
+      })();
+    
+      (() => {
+        let domRoot_el = document.createElement('div')
+        COMPILED-ATTRIBUTES
+            
+
+        domRoot.appendChild(domRoot_el)
+      })();
+    
+      (() => {
+        let tel = document.createTextNode(\`
+        some text
+
+        ^ and empty line
+
+        \`)
+        domRoot.appendChild(tel)
+      })();
+    
+      (() => {
+        let domRoot_el = document.createElement('p')
+        COMPILED-ATTRIBUTES
+            
+
+        domRoot.appendChild(domRoot_el)
+      })();
+    
+      (() => {
+        let tel = document.createTextNode(\`
+      \`)
+        domRoot.appendChild(tel)
+      })();
+        
+    }"
+`;
