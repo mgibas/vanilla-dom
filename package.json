@@ -7,11 +7,10 @@
   "author": "Maciej Gibas <gibasmaciej@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "jest": "^23.4.1",
-    "webpack": "^4.16.1",
-    "webpack-cli": "^3.1.0"
+    "jest": "^23.4.1"
   },
   "dependencies": {
+    "esprima": "^4.0.1",
     "htmlparser2": "^3.9.2"
   }
 }

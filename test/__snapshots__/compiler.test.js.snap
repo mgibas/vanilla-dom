@@ -1,16 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`compiler on compile empty source 1`] = `
-"export default (domRoot, state) => {
+"
+
+    export mount = (domRoot, state) => {
+      const reactivePaths = []
+
           
     }"
 `;
 
 exports[`compiler on compile multiple tag nodes 1`] = `
-"export default (domRoot, state) => {
+"
+
+    export mount = (domRoot, state) => {
+      const reactivePaths = []
+
       
       (() => {
-        let domRoot_el = document.createElement('div')
+        let domRoot_el = document.createElement('div');
         COMPILED-ATTRIBUTES
             
 
@@ -18,7 +26,7 @@ exports[`compiler on compile multiple tag nodes 1`] = `
       })();
     
       (() => {
-        let domRoot_el = document.createElement('p')
+        let domRoot_el = document.createElement('p');
         COMPILED-ATTRIBUTES
             
 
@@ -29,7 +37,11 @@ exports[`compiler on compile multiple tag nodes 1`] = `
 `;
 
 exports[`compiler on compile nested nodes 1`] = `
-"export default (domRoot, state) => {
+"
+
+    export mount = (domRoot, state) => {
+      const reactivePaths = []
+
       
       (() => {
         let tel = document.createTextNode(\`
@@ -38,7 +50,7 @@ exports[`compiler on compile nested nodes 1`] = `
       })();
     
       (() => {
-        let domRoot_el = document.createElement('div')
+        let domRoot_el = document.createElement('div');
         COMPILED-ATTRIBUTES
         
       (() => {
@@ -48,7 +60,7 @@ exports[`compiler on compile nested nodes 1`] = `
       })();
     
       (() => {
-        let domRoot_el_el = document.createElement('p')
+        let domRoot_el_el = document.createElement('p');
         COMPILED-ATTRIBUTES
         
       (() => {
@@ -80,10 +92,14 @@ exports[`compiler on compile nested nodes 1`] = `
 `;
 
 exports[`compiler on compile single tag node 1`] = `
-"export default (domRoot, state) => {
+"
+
+    export mount = (domRoot, state) => {
+      const reactivePaths = []
+
       
       (() => {
-        let domRoot_el = document.createElement('div')
+        let domRoot_el = document.createElement('div');
         COMPILED-ATTRIBUTES
             
 
@@ -94,10 +110,14 @@ exports[`compiler on compile single tag node 1`] = `
 `;
 
 exports[`compiler on compile single tag node with attributes 1`] = `
-"export default (domRoot, state) => {
+"
+
+    export mount = (domRoot, state) => {
+      const reactivePaths = []
+
       
       (() => {
-        let domRoot_el = document.createElement('div')
+        let domRoot_el = document.createElement('div');
         COMPILED-ATTRIBUTES
             
 
@@ -108,7 +128,11 @@ exports[`compiler on compile single tag node with attributes 1`] = `
 `;
 
 exports[`compiler on compile text nodes 1`] = `
-"export default (domRoot, state) => {
+"
+
+    export mount = (domRoot, state) => {
+      const reactivePaths = []
+
       
       (() => {
         let tel = document.createTextNode(\`
@@ -117,7 +141,7 @@ exports[`compiler on compile text nodes 1`] = `
       })();
     
       (() => {
-        let domRoot_el = document.createElement('div')
+        let domRoot_el = document.createElement('div');
         COMPILED-ATTRIBUTES
             
 
@@ -135,7 +159,7 @@ exports[`compiler on compile text nodes 1`] = `
       })();
     
       (() => {
-        let domRoot_el = document.createElement('p')
+        let domRoot_el = document.createElement('p');
         COMPILED-ATTRIBUTES
             
 

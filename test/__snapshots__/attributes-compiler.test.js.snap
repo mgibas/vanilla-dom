@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`compiler on compile multiple reactive expressioons in attribute value 1`] = `"element.setAttribute('foo', \`\${state.hey} and \${state.blah}\`);"`;
+
+exports[`compiler on compile reactive expressioon attribute 1`] = `"element.setAttribute('foo', \`\${state.hey}\`);"`;
+
+exports[`compiler on compile simple attributes 1`] = `"element.setAttribute('foo',\`bar\`);element.setAttribute('bar',\`foo\`);"`;
