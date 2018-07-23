@@ -21,10 +21,22 @@ class ExpressionsParser {
           .split('state.')
           .filter((val) => val) 
           .map((path) => path[path.length-1] === '.' ? path.slice(0,-1) : path)
-        result.template = result.template.replace(exp, '$' + exp)
+
+        result.template = result.template.replace(exp, this._safeExpression(exp))
         result.paths.push(...paths)
       })
     return result
+  }
+  _safeExpression(exp) {
+    return `
+      \${(() => {
+        try {
+          return ${exp.slice(1,-1)}
+        } catch (err) {
+          return ''
+        }
+      })() || ''}
+    `.trim()
   }
 }
 

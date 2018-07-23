@@ -7,14 +7,14 @@ describe('expressions-parses', () => {
     })
 
     it.each([
-      ['{state.fullname}', {paths: ['fullname'], template: '`${state.fullname}`'}], 
-      ['{state.firstname + state.lastname}', {paths: ['firstname', 'lastname'], template: '`${state.firstname + state.lastname}`'}], 
-      ['{state.fullname.toString()}', {paths: ['fullname'], template: '`${state.fullname.toString()}`'}],
-      ['{new Date(state.year, state.month, state.day).toString()}', {paths: ['year','month','day'], template: '`${new Date(state.year, state.month, state.day).toString()}`'}],
-      ['{state.firstname} and {state.lastname}', {paths: ['firstname', 'lastname'], template: '`${state.firstname} and ${state.lastname}`'}]
+      ['{state.fullname}'], 
+      ['{state.firstname + state.lastname}'], 
+      ['{state.fullname.toString()}'],
+      ['{new Date(state.year, state.month, state.day).toString()}'],
+      ['{state.firstname} and {state.lastname}']
     ])('return propper expression descriptor for %s',
-      (expression, expected) => {
-        expect(parser.parse(expression)).toEqual(expected);
+      (expression) => {
+        expect(parser.parse(expression)).toMatchSnapshot();
       }
     );
   })

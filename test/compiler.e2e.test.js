@@ -26,6 +26,9 @@ describe('compiler', () => {
 
     it.each([
       ['simple expressions', '<div foo="{state.foo}">{state.fullname}</div>'],
+      ['property expression on undefined property', '<div foo="{state.missing}">{state.missing}</div>'],
+      ['nested property expression on undefined property', '<div foo="{state.missing.missingbad}">{state.missing.missingbad}</div>'],
+      ['multiple expressions with undefined properties', '<div foo="{state.missing}">{state.missing}  and {state.somissing}</div>'],
       ['multiple expressions', '<div foo="{state.foo} and {state.bar}">{state.foo} and {state.bar}</div>'],
       ['javascript expressions', '<div sum="{state.foo + state.bar + 2}">{state.foo + state.bar}</div>'],
       ['method expressions', '<div upper="{state.fullname.toUpperCase()}">{state.firstname.toUpperCase()}</div>']
@@ -46,6 +49,9 @@ describe('compiler', () => {
 
     it.each([
       ['simple expressions', '<div foo="{state.foo}">{state.fullname}</div>'],
+      ['property expression on undefined property', '<div foo="{state.missing}">{state.missing}</div>'],
+      ['nested property expression on undefined property', '<div foo="{state.missing.missingbad}">{state.missing.missingbad}</div>'],
+      ['multiple expressions with undefined properties', '<div foo="{state.missing}">{state.missing}  and {state.somissing}</div>'],
       ['multiple expressions', '<div foo="{state.foo} and {state.bar}">{state.foo} and {state.bar}</div>'],
       ['javascript expressions', '<div sum="{state.foo + state.bar + 2}">{state.foo + state.bar}</div>'],
       ['method expressions', '<div upper="{state.fullname.toUpperCase()}">{state.firstname.toUpperCase()}</div>']

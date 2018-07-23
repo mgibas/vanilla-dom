@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`expressions-parses on parse return propper expression descriptor for {new Date(state.year, state.month, state.day).toString()} 1`] = `
+Object {
+  "paths": Array [
+    "year",
+    "month",
+    "day",
+  ],
+  "template": "\`\${(() => {
+        try {
+          return new Date(state.year, state.month, state.day).toString()
+        } catch (err) {
+          return ''
+        }
+      })() || ''}\`",
+}
+`;
+
+exports[`expressions-parses on parse return propper expression descriptor for {state.firstname + state.lastname} 1`] = `
+Object {
+  "paths": Array [
+    "firstname",
+    "lastname",
+  ],
+  "template": "\`\${(() => {
+        try {
+          return state.firstname + state.lastname
+        } catch (err) {
+          return ''
+        }
+      })() || ''}\`",
+}
+`;
+
+exports[`expressions-parses on parse return propper expression descriptor for {state.firstname} and {state.lastname} 1`] = `
+Object {
+  "paths": Array [
+    "firstname",
+    "lastname",
+  ],
+  "template": "\`\${(() => {
+        try {
+          return state.firstname
+        } catch (err) {
+          return ''
+        }
+      })() || ''} and \${(() => {
+        try {
+          return state.lastname
+        } catch (err) {
+          return ''
+        }
+      })() || ''}\`",
+}
+`;
+
+exports[`expressions-parses on parse return propper expression descriptor for {state.fullname.toString()} 1`] = `
+Object {
+  "paths": Array [
+    "fullname",
+  ],
+  "template": "\`\${(() => {
+        try {
+          return state.fullname.toString()
+        } catch (err) {
+          return ''
+        }
+      })() || ''}\`",
+}
+`;
+
+exports[`expressions-parses on parse return propper expression descriptor for {state.fullname} 1`] = `
+Object {
+  "paths": Array [
+    "fullname",
+  ],
+  "template": "\`\${(() => {
+        try {
+          return state.fullname
+        } catch (err) {
+          return ''
+        }
+      })() || ''}\`",
+}
+`;

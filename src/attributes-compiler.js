@@ -12,7 +12,10 @@ class AttributesCompiler {
         return `${elementName}.setAttribute('${a}',\`${attributes[a]}\`);`
 
       return `
-        ${elementName}.setAttribute('${a}', ${expression.template});
+        var val = ${expression.template};
+        if(val) {
+          ${elementName}.setAttribute('${a}', val);
+        }
         ${attributeReactiveCompiler.compile(elementName, a, expression)}
       `
     }).join(''))

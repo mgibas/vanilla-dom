@@ -1,12 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`attributes-compiler on compile multiple reactive expressioons in attribute value 1`] = `
-"element.setAttribute('foo', \`\${ state.hey } and \${ state.blah }\`);
+"var val = \`\${ (() => {
+  try {
+    return state.hey;
+  } catch (err) {
+    return '';
+  }
+})() || '' } and \${ (() => {
+  try {
+    return state.blah;
+  } catch (err) {
+    return '';
+  }
+})() || '' }\`;
+if (val) {
+  element.setAttribute('foo', val);
+}
 REACTIVE_COMPILER_PART;"
 `;
 
 exports[`attributes-compiler on compile reactive expressioon attribute 1`] = `
-"element.setAttribute('foo', \`\${ state.hey }\`);
+"var val = \`\${ (() => {
+  try {
+    return state.hey;
+  } catch (err) {
+    return '';
+  }
+})() || '' }\`;
+if (val) {
+  element.setAttribute('foo', val);
+}
 REACTIVE_COMPILER_PART;"
 `;
 

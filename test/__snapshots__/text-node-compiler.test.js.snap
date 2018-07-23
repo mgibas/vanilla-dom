@@ -9,7 +9,13 @@ exports[`text-node-compiler on compile simple text node 1`] = `
 
 exports[`text-node-compiler on compile text node with expression 1`] = `
 "(() => {
-  let textNode = document.createTextNode(\`Helloo \${ status.fullname }!\`);
+  let textNode = document.createTextNode(\`Helloo \${ (() => {
+    try {
+      return status.fullname;
+    } catch (err) {
+      return '';
+    }
+  })() || '' }!\`);
   parent.appendChild(textNode);
   REACTIVE_COMPILER_PART;
 })();"
