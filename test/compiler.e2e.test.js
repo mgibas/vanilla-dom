@@ -1,4 +1,4 @@
-const compiler = require('../compiler')
+const compiler = require('../src/compiler')
 
 describe('compiler', () => {
   describe('mounting compiled code', () => {
@@ -26,6 +26,7 @@ describe('compiler', () => {
 
     it.each([
       ['simple expressions', '<div foo="{state.foo}">{state.fullname}</div>'],
+      ['multiple expressions', '<div foo="{state.foo} and {state.bar}">{state.foo} and {state.bar}</div>'],
       ['javascript expressions', '<div sum="{state.foo + state.bar + 2}">{state.foo + state.bar}</div>'],
       ['method expressions', '<div upper="{state.fullname.toUpperCase()}">{state.firstname.toUpperCase()}</div>']
     ])('mount function evaluates given expression - %s',
@@ -45,6 +46,7 @@ describe('compiler', () => {
 
     it.each([
       ['simple expressions', '<div foo="{state.foo}">{state.fullname}</div>'],
+      ['multiple expressions', '<div foo="{state.foo} and {state.bar}">{state.foo} and {state.bar}</div>'],
       ['javascript expressions', '<div sum="{state.foo + state.bar + 2}">{state.foo + state.bar}</div>'],
       ['method expressions', '<div upper="{state.fullname.toUpperCase()}">{state.firstname.toUpperCase()}</div>']
     ])('update state in dom on update call - %s',

@@ -1,176 +1,166 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`compiler on compile commonjs module type 1`] = `
+"let mount = (domRoot, state) => {
+  const _reactivePaths = [];
+  return state => {
+    Object.keys(_reactivePaths).forEach(key => {
+      _reactivePaths[key].forEach(react => {
+        if (react.type === 'attribute') {
+          react.element.setAttribute(react.attribute, react.templateFunc(state));
+        }
+        if (react.type === 'text') {
+          react.element.nodeValue = react.templateFunc(state);
+        }
+      });
+    });
+  };
+};
+module.exports = mount;"
+`;
+
+exports[`compiler on compile default module type generates es6 export 1`] = `
+"let mount = (domRoot, state) => {
+  const _reactivePaths = [];
+  return state => {
+    Object.keys(_reactivePaths).forEach(key => {
+      _reactivePaths[key].forEach(react => {
+        if (react.type === 'attribute') {
+          react.element.setAttribute(react.attribute, react.templateFunc(state));
+        }
+        if (react.type === 'text') {
+          react.element.nodeValue = react.templateFunc(state);
+        }
+      });
+    });
+  };
+};
+export default mount;"
+`;
+
 exports[`compiler on compile empty source 1`] = `
-"
-
-    export mount = (domRoot, state) => {
-      const reactivePaths = []
-
-          
-    }"
+"let mount = (domRoot, state) => {
+  const _reactivePaths = [];
+  return state => {
+    Object.keys(_reactivePaths).forEach(key => {
+      _reactivePaths[key].forEach(react => {
+        if (react.type === 'attribute') {
+          react.element.setAttribute(react.attribute, react.templateFunc(state));
+        }
+        if (react.type === 'text') {
+          react.element.nodeValue = react.templateFunc(state);
+        }
+      });
+    });
+  };
+};
+export default mount;"
 `;
 
 exports[`compiler on compile multiple tag nodes 1`] = `
-"
-
-    export mount = (domRoot, state) => {
-      const reactivePaths = []
-
-      
-      (() => {
-        let domRoot_el = document.createElement('div');
-        COMPILED-ATTRIBUTES
-            
-
-        domRoot.appendChild(domRoot_el)
-      })();
-    
-      (() => {
-        let domRoot_el = document.createElement('p');
-        COMPILED-ATTRIBUTES
-            
-
-        domRoot.appendChild(domRoot_el)
-      })();
-        
-    }"
+"let mount = (domRoot, state) => {
+  const _reactivePaths = [];
+  console.log('COMPILED_TAG_NODE');
+  console.log('COMPILED_TAG_NODE');
+  return state => {
+    Object.keys(_reactivePaths).forEach(key => {
+      _reactivePaths[key].forEach(react => {
+        if (react.type === 'attribute') {
+          react.element.setAttribute(react.attribute, react.templateFunc(state));
+        }
+        if (react.type === 'text') {
+          react.element.nodeValue = react.templateFunc(state);
+        }
+      });
+    });
+  };
+};
+export default mount;"
 `;
 
 exports[`compiler on compile nested nodes 1`] = `
-"
+"let mount = (domRoot, state) => {
+  const _reactivePaths = [];
+  console.log('COMPILED_TEXT_NODE');
+  console.log('COMPILED_TAG_NODE');
+  console.log('COMPILED_TEXT_NODE');
+  return state => {
+    Object.keys(_reactivePaths).forEach(key => {
+      _reactivePaths[key].forEach(react => {
+        if (react.type === 'attribute') {
+          react.element.setAttribute(react.attribute, react.templateFunc(state));
+        }
+        if (react.type === 'text') {
+          react.element.nodeValue = react.templateFunc(state);
+        }
+      });
+    });
+  };
+};
+export default mount;"
+`;
 
-    export mount = (domRoot, state) => {
-      const reactivePaths = []
-
-      
-      (() => {
-        let tel = document.createTextNode(\`
-        \`)
-        domRoot.appendChild(tel)
-      })();
-    
-      (() => {
-        let domRoot_el = document.createElement('div');
-        COMPILED-ATTRIBUTES
-        
-      (() => {
-        let tel = document.createTextNode(\`
-          \`)
-        domRoot_el.appendChild(tel)
-      })();
-    
-      (() => {
-        let domRoot_el_el = document.createElement('p');
-        COMPILED-ATTRIBUTES
-        
-      (() => {
-        let tel = document.createTextNode(\`hello\`)
-        domRoot_el_el.appendChild(tel)
-      })();
-        
-
-        domRoot_el.appendChild(domRoot_el_el)
-      })();
-    
-      (() => {
-        let tel = document.createTextNode(\`
-        \`)
-        domRoot_el.appendChild(tel)
-      })();
-        
-
-        domRoot.appendChild(domRoot_el)
-      })();
-    
-      (() => {
-        let tel = document.createTextNode(\`
-      \`)
-        domRoot.appendChild(tel)
-      })();
-        
-    }"
+exports[`compiler on compile simple closure export 1`] = `
+"(() => {
+  let mount = (domRoot, state) => {
+    const _reactivePaths = [];
+    return state => {
+      Object.keys(_reactivePaths).forEach(key => {
+        _reactivePaths[key].forEach(react => {
+          if (react.type === 'attribute') {
+            react.element.setAttribute(react.attribute, react.templateFunc(state));
+          }
+          if (react.type === 'text') {
+            react.element.nodeValue = react.templateFunc(state);
+          }
+        });
+      });
+    };
+  };
+  return mount;
+})();"
 `;
 
 exports[`compiler on compile single tag node 1`] = `
-"
-
-    export mount = (domRoot, state) => {
-      const reactivePaths = []
-
-      
-      (() => {
-        let domRoot_el = document.createElement('div');
-        COMPILED-ATTRIBUTES
-            
-
-        domRoot.appendChild(domRoot_el)
-      })();
-        
-    }"
+"let mount = (domRoot, state) => {
+  const _reactivePaths = [];
+  console.log('COMPILED_TAG_NODE');
+  return state => {
+    Object.keys(_reactivePaths).forEach(key => {
+      _reactivePaths[key].forEach(react => {
+        if (react.type === 'attribute') {
+          react.element.setAttribute(react.attribute, react.templateFunc(state));
+        }
+        if (react.type === 'text') {
+          react.element.nodeValue = react.templateFunc(state);
+        }
+      });
+    });
+  };
+};
+export default mount;"
 `;
 
-exports[`compiler on compile single tag node with attributes 1`] = `
-"
-
-    export mount = (domRoot, state) => {
-      const reactivePaths = []
-
-      
-      (() => {
-        let domRoot_el = document.createElement('div');
-        COMPILED-ATTRIBUTES
-            
-
-        domRoot.appendChild(domRoot_el)
-      })();
-        
-    }"
-`;
-
-exports[`compiler on compile text nodes 1`] = `
-"
-
-    export mount = (domRoot, state) => {
-      const reactivePaths = []
-
-      
-      (() => {
-        let tel = document.createTextNode(\`
-        \`)
-        domRoot.appendChild(tel)
-      })();
-    
-      (() => {
-        let domRoot_el = document.createElement('div');
-        COMPILED-ATTRIBUTES
-            
-
-        domRoot.appendChild(domRoot_el)
-      })();
-    
-      (() => {
-        let tel = document.createTextNode(\`
-        some text
-
-        ^ and empty line
-
-        \`)
-        domRoot.appendChild(tel)
-      })();
-    
-      (() => {
-        let domRoot_el = document.createElement('p');
-        COMPILED-ATTRIBUTES
-            
-
-        domRoot.appendChild(domRoot_el)
-      })();
-    
-      (() => {
-        let tel = document.createTextNode(\`
-      \`)
-        domRoot.appendChild(tel)
-      })();
-        
-    }"
+exports[`compiler on compile tag and text nodes 1`] = `
+"let mount = (domRoot, state) => {
+  const _reactivePaths = [];
+  console.log('COMPILED_TEXT_NODE');
+  console.log('COMPILED_TAG_NODE');
+  console.log('COMPILED_TEXT_NODE');
+  console.log('COMPILED_TAG_NODE');
+  console.log('COMPILED_TEXT_NODE');
+  return state => {
+    Object.keys(_reactivePaths).forEach(key => {
+      _reactivePaths[key].forEach(react => {
+        if (react.type === 'attribute') {
+          react.element.setAttribute(react.attribute, react.templateFunc(state));
+        }
+        if (react.type === 'text') {
+          react.element.nodeValue = react.templateFunc(state);
+        }
+      });
+    });
+  };
+};
+export default mount;"
 `;

@@ -1,6 +1,9 @@
-const compiler = require('../attributes-compiler')
+const compiler = require('../src/attributes-compiler')
+let attributeReactiveCompiler = require('../src/attribute-reactive-compiler')
+attributeReactiveCompiler.compile = jest.fn()
+attributeReactiveCompiler.compile.mockReturnValue('REACTIVE_COMPILER_PART')
 
-describe('compiler', () => {
+describe('attributes-compiler', () => {
   describe('on compile', () => {
     it('simple attributes', () => {
       expect(compiler.compile('element', {foo: 'bar', bar:'foo'})).toMatchSnapshot();

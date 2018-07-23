@@ -18,6 +18,6 @@ module.exports = {
   entry: "./demo.js",
   output: {
     path: path.resolve(__dirname),
-    filename: "bundle.js",
+    filename: "demo.bundle.js",
   }
 }

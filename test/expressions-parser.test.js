@@ -1,4 +1,4 @@
-const parser = require('../expressions-parser')
+const parser = require('../src/expressions-parser')
 
 describe('expressions-parses', () => {
   describe('on parse', () => {

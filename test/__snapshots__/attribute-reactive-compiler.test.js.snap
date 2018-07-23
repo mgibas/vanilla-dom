@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`attribute-reactive-compiler on compile multiple paths 1`] = `
+"_reactivePaths['bar'] = _reactivePaths['bar'] || [];
+_reactivePaths['bar'].push({
+  type: 'attribute',
+  element: testElement,
+  attribute: 'foo',
+  templateFunc: state => 'test-template-string'
+});
+_reactivePaths['foo'] = _reactivePaths['foo'] || [];
+_reactivePaths['foo'].push({
+  type: 'attribute',
+  element: testElement,
+  attribute: 'foo',
+  templateFunc: state => 'test-template-string'
+});"
+`;
+
+exports[`attribute-reactive-compiler on compile single path 1`] = `
+"_reactivePaths['bar'] = _reactivePaths['bar'] || [];
+_reactivePaths['bar'].push({
+  type: 'attribute',
+  element: testElement,
+  attribute: 'foo',
+  templateFunc: state => 'test-template-string'
+});"
+`;

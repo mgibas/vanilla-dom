@@ -1,7 +1,6 @@
-const compiler = require('./compiler.js')
+const compiler = require('./src/compiler.js')
 
 module.exports = function(content) {
   let compiled = compiler.compile(content)
-  console.log(compiled)
   return compiled
 };
