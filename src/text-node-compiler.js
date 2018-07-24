@@ -1,21 +1,21 @@
 const helpers = require('./helpers')
-const expressionsParser = require('./expressions-parser')
+const textParser = require('./text-parser')
 const textNodeReactiveCompiler = require('./text-node-reactive-compiler')
 
 class TextNodeCompiler {
 
   compile (parentName, node) {
-    let expression = expressionsParser.parse(node.data)
+    let parsed = textParser.parse(node.data)
      
     let mount = `
-      let textNode = document.createTextNode(${expression ? expression.template : '`' + node.data + '`'})
+      let textNode = document.createTextNode(${parsed ? parsed.template() : '`' + node.data + '`'})
       ${parentName}.appendChild(textNode)
     `
-    if(!expression)
+    if(!parsed)
       return helpers.rewrite(helpers.closure(mount))
     return helpers.rewrite(helpers.closure(`
       ${mount}
-      ${textNodeReactiveCompiler.compile('textNode', expression)} 
+      ${textNodeReactiveCompiler.compile('textNode', parsed)} 
     `))
   }
 }

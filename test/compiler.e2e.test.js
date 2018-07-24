@@ -25,13 +25,13 @@ describe('compiler', () => {
     );
 
     it.each([
-      ['simple expressions', '<div foo="{state.foo}">{state.fullname}</div>'],
-      ['property expression on undefined property', '<div foo="{state.missing}">{state.missing}</div>'],
-      ['nested property expression on undefined property', '<div foo="{state.missing.missingbad}">{state.missing.missingbad}</div>'],
-      ['multiple expressions with undefined properties', '<div foo="{state.missing}">{state.missing}  and {state.somissing}</div>'],
-      ['multiple expressions', '<div foo="{state.foo} and {state.bar}">{state.foo} and {state.bar}</div>'],
-      ['javascript expressions', '<div sum="{state.foo + state.bar + 2}">{state.foo + state.bar}</div>'],
-      ['method expressions', '<div upper="{state.fullname.toUpperCase()}">{state.firstname.toUpperCase()}</div>']
+      ['simple expressions', '<div foo="{{state.foo}}">{{state.fullname}}</div>'],
+      ['property expression on undefined property', '<div foo="{{state.missing}}">{{state.missing}}</div>'],
+      ['nested property expression on undefined property', '<div foo="{{state.missing.missingbad}}">{{state.missing.missingbad}}</div>'],
+      ['multiple expressions with undefined properties', '<div foo="{{state.missing}}">{{state.missing}}  and {{state.somissing}}</div>'],
+      ['multiple expressions', '<div foo="{{state.foo}} and {{state.bar}}">{{state.foo}} and {{state.bar}}</div>'],
+      ['javascript expressions', '<div sum="{{state.foo + state.bar + 2}}">{{state.foo + state.bar}}</div>'],
+      ['method expressions', '<div upper="{{state.fullname.toUpperCase()}}">{{state.firstname.toUpperCase()}}</div>']
     ])('mount function evaluates given expression - %s',
       (testcaseName, template) => {
         let state = {
@@ -48,13 +48,13 @@ describe('compiler', () => {
     );
 
     it.each([
-      ['simple expressions', '<div foo="{state.foo}">{state.fullname}</div>'],
-      ['property expression on undefined property', '<div foo="{state.missing}">{state.missing}</div>'],
-      ['nested property expression on undefined property', '<div foo="{state.missing.missingbad}">{state.missing.missingbad}</div>'],
-      ['multiple expressions with undefined properties', '<div foo="{state.missing}">{state.missing}  and {state.somissing}</div>'],
-      ['multiple expressions', '<div foo="{state.foo} and {state.bar}">{state.foo} and {state.bar}</div>'],
-      ['javascript expressions', '<div sum="{state.foo + state.bar + 2}">{state.foo + state.bar}</div>'],
-      ['method expressions', '<div upper="{state.fullname.toUpperCase()}">{state.firstname.toUpperCase()}</div>']
+      ['simple expressions', '<div foo="{{state.foo}}">{{state.fullname}}</div>'],
+      ['property expression on undefined property', '<div foo="{{state.missing}}">{{state.missing}}</div>'],
+      ['nested property expression on undefined property', '<div foo="{{state.missing.missingbad}}">{{state.missing.missingbad}}</div>'],
+      ['multiple expressions with undefined properties', '<div foo="{{state.missing}}">{{state.missing}}  and {{state.somissing}}</div>'],
+      ['multiple expressions', '<div foo="{{state.foo}} and {{state.bar}}">{{state.foo}} and {{state.bar}}</div>'],
+      ['javascript expressions', '<div sum="{{state.foo + state.bar + 2}}">{{state.foo + state.bar}}</div>'],
+      ['method expressions', '<div upper="{{state.fullname.toUpperCase()}}">{{state.firstname.toUpperCase()}}</div>']
     ])('update state in dom on update call - %s',
       (testcaseName, template) => {
         let state = {
@@ -76,5 +76,47 @@ describe('compiler', () => {
         expect(window.document.body.innerHTML).toMatchSnapshot();
       }
     );
+
+    describe('arrays', () => {
+      it('mounts array using initial state data', ()=>{
+        let state = {
+          objects: [
+            {name: 'foo'},
+            {name: 'bar'}
+          ]
+        }
+        let compiled = compiler.compile(`
+          <ul>
+            <li repeat-for="{{state.objects}}">{{state.objects[i].name}}</li>
+          </ul>
+        `, {module:'closure'})
+        let mount = eval(compiled)
+        mount(window.document.body, state)
+        expect(window.document.body.innerHTML).toMatchSnapshot();
+      })
+      it('simple array update - no changes in legth of array', ()=>{
+        let state = {
+          objects: [
+            {name: 'foo'},
+            {name: 'bar'}
+          ]
+        }
+        let newState = {
+          objects: [
+            {name: 'foo-updated'},
+            {name: 'bar-updated'}
+          ]
+        }
+        let compiled = compiler.compile(`
+          <ul>
+            <li repeat-for="{{state.objects}}">{{state.objects[i].name}}</li>
+          </ul>
+        `, {module:'closure'})
+        let mount = eval(compiled)
+        let update = mount(window.document.body, state)
+        update(newState)
+        expect(window.document.body.innerHTML).toMatchSnapshot();
+      })
+    })
   })
 })

@@ -1,5 +1,5 @@
 const helpers = require('./helpers')
-const expressionsParser = require('./expressions-parser')
+const textParser = require('./text-parser')
 const attributeReactiveCompiler= require('./attribute-reactive-compiler')
 
 class AttributesCompiler {
@@ -7,16 +7,16 @@ class AttributesCompiler {
   compile (elementName, attributes) {
     return helpers.rewrite(Object.keys(attributes).map((a)=>{
 
-      let expression = expressionsParser.parse(attributes[a])
-      if(!expression)
+      let parsed = textParser.parse(attributes[a])
+      if(!parsed)
         return `${elementName}.setAttribute('${a}',\`${attributes[a]}\`);`
 
       return `
-        var val = ${expression.template};
+        var val = ${parsed.template()};
         if(val) {
           ${elementName}.setAttribute('${a}', val);
         }
-        ${attributeReactiveCompiler.compile(elementName, a, expression)}
+        ${attributeReactiveCompiler.compile(elementName, a, parsed)}
       `
     }).join(''))
   }

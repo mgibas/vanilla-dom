@@ -6,14 +6,14 @@ _reactivePaths['bar'].push({
   type: 'attribute',
   element: testElement,
   attribute: 'foo',
-  templateFunc: state => 'test-template-string'
+  template: state => 'test-template-string'
 });
 _reactivePaths['foo'] = _reactivePaths['foo'] || [];
 _reactivePaths['foo'].push({
   type: 'attribute',
   element: testElement,
   attribute: 'foo',
-  templateFunc: state => 'test-template-string'
+  template: state => 'test-template-string'
 });"
 `;
 
@@ -23,6 +23,6 @@ _reactivePaths['bar'].push({
   type: 'attribute',
   element: testElement,
   attribute: 'foo',
-  templateFunc: state => 'test-template-string'
+  template: state => 'test-template-string'
 });"
 `;

@@ -1,5 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`compiler mounting compiled code arrays mounts array using initial state data 1`] = `
+"
+          <ul>
+            <li>foo</li><li>bar</li>
+          </ul>
+        "
+`;
+
+exports[`compiler mounting compiled code arrays simple array update - no changes in legth of array 1`] = `
+"
+          <ul>
+            <li>foo-updated</li><li>bar-updated</li>
+          </ul>
+        "
+`;
+
 exports[`compiler mounting compiled code mount function evaluates given expression - javascript expressions 1`] = `"<div sum=\\"7\\">5</div>"`;
 
 exports[`compiler mounting compiled code mount function evaluates given expression - method expressions 1`] = `"<div upper=\\"MACIEJ GIBAS\\">MACIEJ</div>"`;

@@ -1,6 +1,7 @@
 const helpers = require('./helpers')
 const htmlparser = require('htmlparser2')
 const tagNodeCompiler = require('./tag-node-compiler.js')
+const repeatTagNodeCompiler = require('./repeat-tag-node-compiler.js')
 const textNodeCompiler = require('./text-node-compiler.js')
 
 class Compiler {
@@ -19,10 +20,10 @@ class Compiler {
           Object.keys(_reactivePaths).forEach((key) => {
             _reactivePaths[key].forEach((react) =>{
               if(react.type === 'attribute') {
-                react.element.setAttribute(react.attribute,react.templateFunc(state))
+                react.element.setAttribute(react.attribute,react.template(state))
               }
               if(react.type === 'text') {
-                react.element.nodeValue = react.templateFunc(state)
+                react.element.nodeValue = react.template(state)
               }
             })
           })
@@ -41,7 +42,9 @@ class Compiler {
     `)
   }
   compileNode(parentName, node) {
-    if(node.type === 'tag')
+    if(node.type === 'tag' && node.attribs['repeat-for'])
+      return repeatTagNodeCompiler.compile(parentName, node, this.compileNode.bind(this))
+    else if(node.type === 'tag')
       return tagNodeCompiler.compile(parentName, node, this.compileNode.bind(this))
     else
       return textNodeCompiler.compile(parentName, node)

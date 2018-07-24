@@ -1,14 +1,14 @@
 const helpers = require('./helpers')
 
 class AttributeReactiveCompiler {
-  compile (elementName, attribute, expression) {
-    return helpers.rewrite(expression.paths.map((path) => `
+  compile (elementName, attribute, parsed) {
+    return helpers.rewrite(parsed.paths.map((path) => `
         _reactivePaths['${path}'] = _reactivePaths['${path}'] || [];
         _reactivePaths['${path}'].push({ 
           type: 'attribute',
           element: ${elementName},
           attribute: '${attribute}',
-          templateFunc: (state) => ${expression.template}
+          template: (state) => ${parsed.template()}
         });
       `).join(''))
   }

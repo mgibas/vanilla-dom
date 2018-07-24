@@ -9,7 +9,7 @@ describe('text-node-compiler', () => {
       expect(compiler.compile('parent', {data: 'node data'})).toMatchSnapshot();
     })
     it('text node with expression', () => {
-      expect(compiler.compile('parent', {data: 'Helloo {status.fullname}!'})).toMatchSnapshot();
+      expect(compiler.compile('parent', {data: 'Helloo {{status.fullname}}!'})).toMatchSnapshot();
     })
   })
 })
