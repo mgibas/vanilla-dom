@@ -1,7 +1,7 @@
 const compiler = require('../src/attributes-compiler')
-let attributeReactiveCompiler = require('../src/attribute-reactive-compiler')
-attributeReactiveCompiler.compile = jest.fn()
-attributeReactiveCompiler.compile.mockReturnValue('REACTIVE_COMPILER_PART')
+let attributeUpdateCompiler = require('../src/attribute-update-compiler')
+attributeUpdateCompiler.compile = jest.fn()
+attributeUpdateCompiler.compile.mockReturnValue('UPDATE_COMPILER_PART')
 
 describe('attributes-compiler', () => {
   describe('on compile', () => {

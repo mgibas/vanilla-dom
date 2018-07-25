@@ -12,7 +12,8 @@ class TagNodeCompiler {
         return childrenCompiler(elName, child)
       }).join('')}    
 
-      ${parentName}.appendChild(${elName})
+      ${parentName}.appendChild(${elName});
+      return ${elName};
     `)
   }
 }

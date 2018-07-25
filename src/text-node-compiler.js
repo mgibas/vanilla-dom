@@ -1,10 +1,10 @@
 const helpers = require('./helpers')
 const textParser = require('./text-parser')
-const textNodeReactiveCompiler = require('./text-node-reactive-compiler')
+const textNodeUpdateCompiler = require('./text-node-update-compiler')
 
 class TextNodeCompiler {
 
-  compile (parentName, node) {
+  compile (parentName, node, rescoped) {
     let parsed = textParser.parse(node.data)
      
     let mount = `
@@ -15,7 +15,7 @@ class TextNodeCompiler {
       return helpers.rewrite(helpers.closure(mount))
     return helpers.rewrite(helpers.closure(`
       ${mount}
-      ${textNodeReactiveCompiler.compile('textNode', parsed)} 
+      ${textNodeUpdateCompiler.compile('textNode', parsed)} 
     `))
   }
 }

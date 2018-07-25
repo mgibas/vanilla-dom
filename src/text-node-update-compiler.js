@@ -1,16 +1,14 @@
 const helpers = require('./helpers')
 
-class TextNodeReactiveCompiler {
+class TextNodeUpdateCompiler {
   compile (elementName, parsed) {
     return helpers.rewrite(parsed.paths.map((path) => `
       _reactivePaths['${path}'] = _reactivePaths['${path}'] || [];
       _reactivePaths['${path}'].push({ 
-        type: 'text',
-        element: ${elementName},
-        template: (state) => ${parsed.template()}
+        update: (state) => {${elementName}.nodeValue = ${parsed.template()}}
       });
       `).join(''))
   }
 }
 
-module.exports =  new TextNodeReactiveCompiler()
+module.exports =  new TextNodeUpdateCompiler()

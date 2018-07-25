@@ -1,20 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`compiler mounting compiled code arrays mounts array using initial state data 1`] = `
+exports[`compiler mounting compiled code arrays array update - added new item 1`] = `
 "
           <ul>
             <li>foo</li><li>bar</li>
+          <li>oof</li></ul>
+        "
+`;
+
+exports[`compiler mounting compiled code arrays array update - removed item 1`] = `
+"
+          <ul>
+            <li>foo</li><li>oof</li>
           </ul>
         "
 `;
 
-exports[`compiler mounting compiled code arrays simple array update - no changes in legth of array 1`] = `
+exports[`compiler mounting compiled code arrays javascript items definition 1`] = `
 "
           <ul>
-            <li>foo-updated</li><li>bar-updated</li>
+            <li>foo-1</li><li>foo-2</li><li>foo-3</li><li>bar-1</li><li>bar-2</li>
           </ul>
         "
 `;
+
+exports[`compiler mounting compiled code arrays mounts array using initial state data - custom "as" 1`] = `"<ul><li>foo</li><li>bar</li></ul>"`;
+
+exports[`compiler mounting compiled code arrays mounts array using initial state data - custom "index" 1`] = `"<ul><li>foo</li><li>bar</li></ul>"`;
+
+exports[`compiler mounting compiled code arrays mounts array using initial state data - simple 1`] = `"<ul><li>foo</li><li>bar</li></ul>"`;
+
+exports[`compiler mounting compiled code arrays update without array length change - custom "as" 1`] = `"<ul><li>foo-updated</li><li>bar-updated</li></ul>"`;
+
+exports[`compiler mounting compiled code arrays update without array length change - custom "index" 1`] = `"<ul><li>foo-updated</li><li>bar-updated</li></ul>"`;
+
+exports[`compiler mounting compiled code arrays update without array length change - simple 1`] = `"<ul><li>foo-updated</li><li>bar-updated</li></ul>"`;
 
 exports[`compiler mounting compiled code mount function evaluates given expression - javascript expressions 1`] = `"<div sum=\\"7\\">5</div>"`;
 

@@ -17,7 +17,7 @@ exports[`attributes-compiler on compile multiple reactive expressioons in attrib
 if (val) {
   element.setAttribute('foo', val);
 }
-REACTIVE_COMPILER_PART;"
+UPDATE_COMPILER_PART;"
 `;
 
 exports[`attributes-compiler on compile reactive expressioon attribute 1`] = `
@@ -31,7 +31,7 @@ exports[`attributes-compiler on compile reactive expressioon attribute 1`] = `
 if (val) {
   element.setAttribute('foo', val);
 }
-REACTIVE_COMPILER_PART;"
+UPDATE_COMPILER_PART;"
 `;
 
 exports[`attributes-compiler on compile simple attributes 1`] = `

@@ -1,6 +1,6 @@
-const compiler = require('../src/attribute-reactive-compiler')
+const compiler = require('../src/attribute-update-compiler')
 
-describe('attribute-reactive-compiler', () => {
+describe('attribute-update-compiler', () => {
   describe('on compile', () => {
     it('single path', () => {
       expect(compiler.compile('testElement', 'foo',{

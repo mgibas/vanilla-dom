@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`repeat-node-compiler on compile simple token 1`] = `
+"(() => {
+  let _nodes = [];
+  let items = (() => {
+    try {
+      return state.items;
+    } catch (err) {
+      return;
+    }
+  })();
+  if (!items)
+    return;
+  REPEAT_NODE_UPDATE_COMPILER_PART('parent', '[object Object]', 'true', '[object Object]');
+  for (let i = 0; i < items.length; i++) {
+    let newNode = CHILDREN_COMPILER_PART('parent', '[object Object]');
+    _nodes.push(newNode);
+  }
+})();"
+`;

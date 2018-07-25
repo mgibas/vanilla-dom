@@ -1,7 +1,7 @@
 const compiler = require('../src/text-node-compiler')
-let textNodeReactiveCompiler = require('../src/text-node-reactive-compiler')
-textNodeReactiveCompiler.compile = jest.fn()
-textNodeReactiveCompiler.compile.mockReturnValue('REACTIVE_COMPILER_PART')
+let textNodeUpdateCompiler = require('../src/text-node-update-compiler')
+textNodeUpdateCompiler.compile = jest.fn()
+textNodeUpdateCompiler.compile.mockReturnValue('UPDATE_COMPILER_PART')
 
 describe('text-node-compiler', () => {
   describe('on compile', () => {

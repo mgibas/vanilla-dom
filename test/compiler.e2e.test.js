@@ -78,23 +78,24 @@ describe('compiler', () => {
     );
 
     describe('arrays', () => {
-      it('mounts array using initial state data', ()=>{
-        let state = {
-          objects: [
-            {name: 'foo'},
-            {name: 'bar'}
-          ]
-        }
-        let compiled = compiler.compile(`
-          <ul>
-            <li repeat-for="{{state.objects}}">{{state.objects[i].name}}</li>
-          </ul>
-        `, {module:'closure'})
+      it.each([
+        ['simple', '<ul><li repeat-for="{{state.objects}}">{{items[i].name}}</li></ul>'],
+        ['custom "as"', '<ul><li repeat-for="{{state.objects}}" repeat-as="rows">{{rows[i].name}}</li></ul>'],
+        ['custom "index"', '<ul><li repeat-for="{{state.objects}}" repeat-index="b">{{items[b].name}}</li></ul>']
+      ])('mounts array using initial state data - %s',
+        (testcaseName, template) => {
+        let state = {objects: [{name: 'foo'},{name: 'bar'}]}
+        let compiled = compiler.compile(template, {module:'closure'})
         let mount = eval(compiled)
         mount(window.document.body, state)
         expect(window.document.body.innerHTML).toMatchSnapshot();
       })
-      it('simple array update - no changes in legth of array', ()=>{
+
+      it.each([
+        ['simple', '<ul><li repeat-for="{{state.objects}}">{{items[i].name}}</li></ul>'],
+        ['custom "as"', '<ul><li repeat-for="{{state.objects}}" repeat-as="rows">{{rows[i].name}}</li></ul>'],
+        ['custom "index"', '<ul><li repeat-for="{{state.objects}}" repeat-index="b">{{items[b].name}}</li></ul>']
+      ])('update without array length change - %s', (testcaseName, template) => {
         let state = {
           objects: [
             {name: 'foo'},
@@ -107,14 +108,79 @@ describe('compiler', () => {
             {name: 'bar-updated'}
           ]
         }
+        let compiled = compiler.compile(template, {module:'closure'})
+        let mount = eval(compiled)
+        let update = mount(window.document.body, state)
+        update(newState)
+        expect(window.document.body.innerHTML).toMatchSnapshot();
+      })
+      it('array update - added new item', ()=>{
+        let state = {
+          objects: [
+            {name: 'foo'},
+            {name: 'bar'}
+          ]
+        }
+        let newState = {
+          objects: [
+            {name: 'foo'},
+            {name: 'bar'},
+            {name: 'oof'},
+          ]
+        }
         let compiled = compiler.compile(`
           <ul>
-            <li repeat-for="{{state.objects}}">{{state.objects[i].name}}</li>
+            <li repeat-for="{{state.objects}}">{{items[i].name}}</li>
           </ul>
         `, {module:'closure'})
         let mount = eval(compiled)
         let update = mount(window.document.body, state)
         update(newState)
+        expect(window.document.body.innerHTML).toMatchSnapshot();
+      })
+      it('array update - removed item', ()=>{
+        let state = {
+          objects: [
+            {name: 'foo'},
+            {name: 'bar'},
+            {name: 'oof'}
+          ]
+        }
+        let newState = {
+          objects: [
+            {name: 'foo'},
+            {name: 'oof'}
+          ]
+        }
+        let compiled = compiler.compile(`
+          <ul>
+            <li repeat-for="{{state.objects}}">{{items[i].name}}</li>
+          </ul>
+        `, {module:'closure'})
+        let mount = eval(compiled)
+        let update = mount(window.document.body, state)
+        update(newState)
+        expect(window.document.body.innerHTML).toMatchSnapshot();
+      })
+      it('javascript items definition', ()=>{
+        let state = {
+          foos: [
+            {name: 'foo-1'},
+            {name: 'foo-2'},
+            {name: 'foo-3'}
+          ],
+          bars: [
+            {name: 'bar-1'},
+            {name: 'bar-2'}
+          ]
+        }
+        let compiled = compiler.compile(`
+          <ul>
+            <li repeat-for="{{state.foos.concat(state.bars)}}">{{items[i].name}}</li>
+          </ul>
+        `, {module:'closure'})
+        let mount = eval(compiled)
+        mount(window.document.body, state)
         expect(window.document.body.innerHTML).toMatchSnapshot();
       })
     })

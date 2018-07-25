@@ -17,6 +17,6 @@ exports[`text-node-compiler on compile text node with expression 1`] = `
     }
   })() || '' }!\`);
   parent.appendChild(textNode);
-  REACTIVE_COMPILER_PART;
+  UPDATE_COMPILER_PART;
 })();"
 `;

@@ -1,6 +1,6 @@
 const helpers = require('./helpers')
 const textParser = require('./text-parser')
-const attributeReactiveCompiler= require('./attribute-reactive-compiler')
+const attributeUpdateCompiler= require('./attribute-update-compiler')
 
 class AttributesCompiler {
 
@@ -16,7 +16,7 @@ class AttributesCompiler {
         if(val) {
           ${elementName}.setAttribute('${a}', val);
         }
-        ${attributeReactiveCompiler.compile(elementName, a, parsed)}
+        ${attributeUpdateCompiler.compile(elementName, a, parsed)}
       `
     }).join(''))
   }

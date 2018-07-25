@@ -5,13 +5,8 @@ exports[`compiler on compile commonjs module type 1`] = `
   const _reactivePaths = [];
   return state => {
     Object.keys(_reactivePaths).forEach(key => {
-      _reactivePaths[key].forEach(react => {
-        if (react.type === 'attribute') {
-          react.element.setAttribute(react.attribute, react.template(state));
-        }
-        if (react.type === 'text') {
-          react.element.nodeValue = react.template(state);
-        }
+      _reactivePaths[key].forEach(updater => {
+        updater.update(state);
       });
     });
   };
@@ -24,13 +19,8 @@ exports[`compiler on compile default module type generates es6 export 1`] = `
   const _reactivePaths = [];
   return state => {
     Object.keys(_reactivePaths).forEach(key => {
-      _reactivePaths[key].forEach(react => {
-        if (react.type === 'attribute') {
-          react.element.setAttribute(react.attribute, react.template(state));
-        }
-        if (react.type === 'text') {
-          react.element.nodeValue = react.template(state);
-        }
+      _reactivePaths[key].forEach(updater => {
+        updater.update(state);
       });
     });
   };
@@ -43,13 +33,8 @@ exports[`compiler on compile empty source 1`] = `
   const _reactivePaths = [];
   return state => {
     Object.keys(_reactivePaths).forEach(key => {
-      _reactivePaths[key].forEach(react => {
-        if (react.type === 'attribute') {
-          react.element.setAttribute(react.attribute, react.template(state));
-        }
-        if (react.type === 'text') {
-          react.element.nodeValue = react.template(state);
-        }
+      _reactivePaths[key].forEach(updater => {
+        updater.update(state);
       });
     });
   };
@@ -64,13 +49,8 @@ exports[`compiler on compile multiple tag nodes 1`] = `
   console.log('COMPILED_TAG_NODE');
   return state => {
     Object.keys(_reactivePaths).forEach(key => {
-      _reactivePaths[key].forEach(react => {
-        if (react.type === 'attribute') {
-          react.element.setAttribute(react.attribute, react.template(state));
-        }
-        if (react.type === 'text') {
-          react.element.nodeValue = react.template(state);
-        }
+      _reactivePaths[key].forEach(updater => {
+        updater.update(state);
       });
     });
   };
@@ -86,13 +66,8 @@ exports[`compiler on compile nested nodes 1`] = `
   console.log('COMPILED_TEXT_NODE');
   return state => {
     Object.keys(_reactivePaths).forEach(key => {
-      _reactivePaths[key].forEach(react => {
-        if (react.type === 'attribute') {
-          react.element.setAttribute(react.attribute, react.template(state));
-        }
-        if (react.type === 'text') {
-          react.element.nodeValue = react.template(state);
-        }
+      _reactivePaths[key].forEach(updater => {
+        updater.update(state);
       });
     });
   };
@@ -106,13 +81,8 @@ exports[`compiler on compile simple closure export 1`] = `
     const _reactivePaths = [];
     return state => {
       Object.keys(_reactivePaths).forEach(key => {
-        _reactivePaths[key].forEach(react => {
-          if (react.type === 'attribute') {
-            react.element.setAttribute(react.attribute, react.template(state));
-          }
-          if (react.type === 'text') {
-            react.element.nodeValue = react.template(state);
-          }
+        _reactivePaths[key].forEach(updater => {
+          updater.update(state);
         });
       });
     };
@@ -127,13 +97,8 @@ exports[`compiler on compile single tag node 1`] = `
   console.log('COMPILED_TAG_NODE');
   return state => {
     Object.keys(_reactivePaths).forEach(key => {
-      _reactivePaths[key].forEach(react => {
-        if (react.type === 'attribute') {
-          react.element.setAttribute(react.attribute, react.template(state));
-        }
-        if (react.type === 'text') {
-          react.element.nodeValue = react.template(state);
-        }
+      _reactivePaths[key].forEach(updater => {
+        updater.update(state);
       });
     });
   };
@@ -151,13 +116,8 @@ exports[`compiler on compile tag and text nodes 1`] = `
   console.log('COMPILED_TEXT_NODE');
   return state => {
     Object.keys(_reactivePaths).forEach(key => {
-      _reactivePaths[key].forEach(react => {
-        if (react.type === 'attribute') {
-          react.element.setAttribute(react.attribute, react.template(state));
-        }
-        if (react.type === 'text') {
-          react.element.nodeValue = react.template(state);
-        }
+      _reactivePaths[key].forEach(updater => {
+        updater.update(state);
       });
     });
   };

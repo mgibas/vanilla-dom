@@ -1,6 +1,6 @@
-const compiler = require('../src/text-node-reactive-compiler')
+const compiler = require('../src/text-node-update-compiler')
 
-describe('text-node-reactive-compiler', () => {
+describe('text-node-update-compiler', () => {
   describe('on compile', () => {
     it('single path', () => {
       expect(compiler.compile('testElement', {
