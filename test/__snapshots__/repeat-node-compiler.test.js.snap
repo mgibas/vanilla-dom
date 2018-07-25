@@ -9,13 +9,14 @@ exports[`repeat-node-compiler on compile simple token 1`] = `
     } catch (err) {
       return;
     }
-  })();
-  if (!items)
-    return;
-  REPEAT_NODE_UPDATE_COMPILER_PART('parent', '[object Object]', 'true', '[object Object]');
+  })() || [];
+  let _createChildren = i => {
+    node = TAG_NODE_COMPILER_PART('parent', '[object Object]', 'true');
+    _nodes.push(node);
+  };
+  REPEAT_NODE_UPDATE_COMPILER_PART('parent', '[object Object]', 'false', 'items');
   for (let i = 0; i < items.length; i++) {
-    let newNode = CHILDREN_COMPILER_PART('parent', '[object Object]');
-    _nodes.push(newNode);
+    _createChildren(i);
   }
 })();"
 `;

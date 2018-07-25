@@ -12,7 +12,7 @@ describe('repeat-node-update-compiler', () => {
         paths: ['bars'],
         value: () => 'state.bars'
       }
-      expect(compiler.compile('parent', {}, childrenCompiler, parsed, 'items', 'i'))
+      expect(compiler.compile('parent', {}, parsed, 'items', 'i'))
         .toMatchSnapshot();
     })
     it('multipl paths', () => {
@@ -20,7 +20,7 @@ describe('repeat-node-update-compiler', () => {
         paths: ['bars', 'foos'],
         value: () => 'state.bars.push(...state.foos)'
       }
-      expect(compiler.compile('parent', {}, childrenCompiler, parsed, 'items', 'i'))
+      expect(compiler.compile('parent', {}, parsed, 'items', 'i'))
         .toMatchSnapshot();
     })
   })

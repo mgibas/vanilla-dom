@@ -3,7 +3,7 @@ const tagNodeCompiler = require('./tag-node-compiler.js')
 
 class RepeatNodeUpdateCompiler {
 
-  compile (parentName, node, childrenCompiler, parsed, as, index) {
+  compile (parentName, node, parsed, as, index) {
     return helpers.rewrite(parsed.paths.map((path) => `
       _reactivePaths['${path}'] = _reactivePaths['${path}'] || [];
       _reactivePaths['${path}'].push({ 
@@ -14,17 +14,11 @@ class RepeatNodeUpdateCompiler {
             ${this._compileRemoveNode(parentName)}
           } 
           for(let ${index} = prevCount; ${index} < ${as}.length; ${index}++) {
-            ${this._compileCreateNode(parentName, node, childrenCompiler)}
+            _createChildren(${index})
           } 
         } 
       });
       `).join(''))
-  }
-  _compileCreateNode(parentName, node, childrenCompiler) {
-    return `
-      let newNode = ${childrenCompiler(parentName, node)} 
-      _nodes.push(newNode)
-    `
   }
   _compileRemoveNode(parentName) {
     return `

@@ -16,12 +16,14 @@ class RepeatNodeCompiler {
     return helpers.rewrite(helpers.closure(
     `
       let _nodes = []
-      let ${as} = ${parsed.value()}
-      if(!${as}) return
-      ${repeatNodeUpdateCompiler.compile(parentName, node, childrenCompiler, parsed, as, index)}
+      let ${as} = ${parsed.value()} || []
+      let _createChildren = (${index}) => {
+        node = ${tagNodeCompiler.compile(parentName, node, childrenCompiler)}
+        _nodes.push(node)
+      }
+      ${repeatNodeUpdateCompiler.compile(parentName, node, parsed, as, index)}
       for(let ${index} = 0; ${index} < ${as}.length; ${index}++) {
-        let newNode = ${childrenCompiler(parentName, node)} 
-        _nodes.push(newNode)
+        _createChildren(${index})
       } 
     `)) 
   }

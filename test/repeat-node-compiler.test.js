@@ -5,7 +5,7 @@ let childrenCompiler = jest.fn()
 tagNodeCompiler.compile = jest.fn()
 repeatNodeUpdateCompiler.compile = jest.fn()
 childrenCompiler.mockImplementation((a,b) => `CHILDREN_COMPILER_PART('${a}', '${b}')`)
-tagNodeCompiler.compile.mockImplementation((a,b,c) => `TAG_NODE_COMPILER_PART('${a}', '${b}', '${c}')`)
+tagNodeCompiler.compile.mockImplementation((a,b,c) => `TAG_NODE_COMPILER_PART('${a}', '${b}', '${c===childrenCompiler}')`)
 repeatNodeUpdateCompiler.compile.mockImplementation((a,b,c,d) => `REPEAT_NODE_UPDATE_COMPILER_PART('${a}', '${b}', '${c===childrenCompiler}', '${d}')`)
 
 describe('repeat-node-compiler', () => {

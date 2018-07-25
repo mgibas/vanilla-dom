@@ -11,8 +11,7 @@ _reactivePaths['bars'].push({
       parent.removeChild(toRemove);
     }
     for (let i = prevCount; i < items.length; i++) {
-      let newNode = CHILDREN_COMPILER_PART('parent', '[object Object]');
-      _nodes.push(newNode);
+      _createChildren(i);
     }
   }
 });
@@ -26,8 +25,7 @@ _reactivePaths['foos'].push({
       parent.removeChild(toRemove);
     }
     for (let i = prevCount; i < items.length; i++) {
-      let newNode = CHILDREN_COMPILER_PART('parent', '[object Object]');
-      _nodes.push(newNode);
+      _createChildren(i);
     }
   }
 });"
@@ -44,8 +42,7 @@ _reactivePaths['bars'].push({
       parent.removeChild(toRemove);
     }
     for (let i = prevCount; i < items.length; i++) {
-      let newNode = CHILDREN_COMPILER_PART('parent', '[object Object]');
-      _nodes.push(newNode);
+      _createChildren(i);
     }
   }
 });"

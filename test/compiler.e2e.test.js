@@ -81,10 +81,16 @@ describe('compiler', () => {
       it.each([
         ['simple', '<ul><li repeat-for="{{state.objects}}">{{items[i].name}}</li></ul>'],
         ['custom "as"', '<ul><li repeat-for="{{state.objects}}" repeat-as="rows">{{rows[i].name}}</li></ul>'],
-        ['custom "index"', '<ul><li repeat-for="{{state.objects}}" repeat-index="b">{{items[b].name}}</li></ul>']
-      ])('mounts array using initial state data - %s',
-        (testcaseName, template) => {
-        let state = {objects: [{name: 'foo'},{name: 'bar'}]}
+        ['custom "index"', '<ul><li repeat-for="{{state.objects}}" repeat-index="b">{{items[b].name}}</li></ul>'],
+        ['js expression', '<ul><li repeat-for="{{state.objects.concat(state.objects)}}">{{items[i].name}}</li></ul>'],
+        ['nested array', `
+          <ul>
+            <li repeat-for="{{state.objects}}">
+              <span repeat-for="{{items[i].chars}}" repeat-as="chars" repeat-index="j">{{chars[j]}}</span>
+            </li>
+          </ul>`]
+      ])('mounts array using initial state data - %s', (testcaseName, template) => {
+        let state = {objects: [{name: 'foo', chars: ['f','o','o']},{name: 'bar', chars: ['b','a','r']}]}
         let compiled = compiler.compile(template, {module:'closure'})
         let mount = eval(compiled)
         mount(window.document.body, state)
@@ -94,93 +100,39 @@ describe('compiler', () => {
       it.each([
         ['simple', '<ul><li repeat-for="{{state.objects}}">{{items[i].name}}</li></ul>'],
         ['custom "as"', '<ul><li repeat-for="{{state.objects}}" repeat-as="rows">{{rows[i].name}}</li></ul>'],
-        ['custom "index"', '<ul><li repeat-for="{{state.objects}}" repeat-index="b">{{items[b].name}}</li></ul>']
+        ['custom "index"', '<ul><li repeat-for="{{state.objects}}" repeat-index="b">{{items[b].name}}</li></ul>'],
+        ['js expression', '<ul><li repeat-for="{{state.objects.concat(state.objects)}}">{{items[i].name}}</li></ul>'],
+        ['nested array', `
+          <ul>
+            <li repeat-for="{{state.objects}}">
+              <span repeat-for="{{items[i].chars}}" repeat-as="chars" repeat-index="j">{{chars[j]}}</span>
+            </li>
+          </ul>`]
       ])('update without array length change - %s', (testcaseName, template) => {
-        let state = {
-          objects: [
-            {name: 'foo'},
-            {name: 'bar'}
-          ]
-        }
-        let newState = {
-          objects: [
-            {name: 'foo-updated'},
-            {name: 'bar-updated'}
-          ]
-        }
+        let state = {objects: [{name: 'foo', chars: 'foo'.split('')},{name: 'bar', chars: 'bar'.split('')}]}
+        let newState = {objects: [{name: 'foo-updated', chars: 'foo-updated'.split('')},{name: 'bar-updated', chars: 'bar-updated'.split('')}]}
         let compiled = compiler.compile(template, {module:'closure'})
         let mount = eval(compiled)
         let update = mount(window.document.body, state)
+
         update(newState)
+
         expect(window.document.body.innerHTML).toMatchSnapshot();
       })
-      it('array update - added new item', ()=>{
-        let state = {
-          objects: [
-            {name: 'foo'},
-            {name: 'bar'}
-          ]
-        }
-        let newState = {
-          objects: [
-            {name: 'foo'},
-            {name: 'bar'},
-            {name: 'oof'},
-          ]
-        }
-        let compiled = compiler.compile(`
-          <ul>
-            <li repeat-for="{{state.objects}}">{{items[i].name}}</li>
-          </ul>
-        `, {module:'closure'})
+
+      it.each([
+        ['add item', [{name: 'foo'},{name: 'bar'}], [{name: 'foo'},{name: 'bar'},{name: 'oof'}]],
+        ['no array to array with items', null, [{name: 'foo'},{name: 'bar'}]],
+        ['remove item', [{name: 'foo'},{name: 'bar'},{name: 'oof'}], [{name: 'foo'},{name: 'oof'}]]
+      ])('splicing - %s', (testcaseName, from, to) => {
+        let state = {objects: from}
+        let newState = {objects: to}
+        let compiled = compiler.compile('<ul><li repeat-for="{{state.objects}}">{{items[i].name}}</li></ul>', {module:'closure'})
         let mount = eval(compiled)
         let update = mount(window.document.body, state)
+
         update(newState)
-        expect(window.document.body.innerHTML).toMatchSnapshot();
-      })
-      it('array update - removed item', ()=>{
-        let state = {
-          objects: [
-            {name: 'foo'},
-            {name: 'bar'},
-            {name: 'oof'}
-          ]
-        }
-        let newState = {
-          objects: [
-            {name: 'foo'},
-            {name: 'oof'}
-          ]
-        }
-        let compiled = compiler.compile(`
-          <ul>
-            <li repeat-for="{{state.objects}}">{{items[i].name}}</li>
-          </ul>
-        `, {module:'closure'})
-        let mount = eval(compiled)
-        let update = mount(window.document.body, state)
-        update(newState)
-        expect(window.document.body.innerHTML).toMatchSnapshot();
-      })
-      it('javascript items definition', ()=>{
-        let state = {
-          foos: [
-            {name: 'foo-1'},
-            {name: 'foo-2'},
-            {name: 'foo-3'}
-          ],
-          bars: [
-            {name: 'bar-1'},
-            {name: 'bar-2'}
-          ]
-        }
-        let compiled = compiler.compile(`
-          <ul>
-            <li repeat-for="{{state.foos.concat(state.bars)}}">{{items[i].name}}</li>
-          </ul>
-        `, {module:'closure'})
-        let mount = eval(compiled)
-        mount(window.document.body, state)
+
         expect(window.document.body.innerHTML).toMatchSnapshot();
       })
     })
