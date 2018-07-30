@@ -5,25 +5,27 @@ const repeatNodeUpdateCompiler = require('./repeat-node-update-compiler.js')
 
 class RepeatNodeCompiler {
 
-  compile (parentName, node, childrenCompiler) {
+  compile (parentName, node, childrenCompiler, opt) {
     let elName = `${parentName}_el`
-    let parsed = textParser.parse(node.attribs['repeat-for'])
-    let as = node.attribs['repeat-as'] || 'items'
-    let index = node.attribs['repeat-index'] || 'i'
+    let parsed = textParser.parse(node.attribs['repeat-for'], opt)
+    let options = Object.assign({
+      as: node.attribs['repeat-as'] || 'items', 
+      index: node.attribs['repeat-index'] || 'i'
+    }, opt)
     delete node.attribs['repeat-for'] 
     delete node.attribs['repeat-as'] 
     delete node.attribs['repeat-index'] 
     return helpers.rewrite(helpers.closure(
     `
       let _nodes = []
-      let ${as} = ${parsed.value()} || []
-      let _createChildren = (${index}) => {
-        node = ${tagNodeCompiler.compile(parentName, node, childrenCompiler)}
+      let ${options.as} = ${parsed.value()} || []
+      let _createChildren = (${options.index}) => {
+        node = ${tagNodeCompiler.compile(parentName, node, childrenCompiler, opt)}
         _nodes.push(node)
       }
-      ${repeatNodeUpdateCompiler.compile(parentName, node, parsed, as, index)}
-      for(let ${index} = 0; ${index} < ${as}.length; ${index}++) {
-        _createChildren(${index})
+      ${repeatNodeUpdateCompiler.compile(parentName, node, parsed, options)}
+      for(let ${options.index} = 0; ${options.index} < ${options.as}.length; ${options.index}++) {
+        _createChildren(${options.index})
       } 
     `)) 
   }

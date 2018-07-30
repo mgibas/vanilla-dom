@@ -1,44 +1,44 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`text-parses on parse creates propper template function - method call 1`] = `"\`\${(()=>{try{return (state.fullname.toString())}catch(err){return ''}})() || ''}\`"`;
+exports[`text-parses on parse creates propper template function - method call 1`] = `"\`\${(()=>{try{return (st.fullname.toString())}catch(err){return ''}})() || ''}\`"`;
 
-exports[`text-parses on parse creates propper template function - mixed with text 1`] = `"\`\${(()=>{try{return (state.firstname)}catch(err){return ''}})() || ''} and \${(()=>{try{return (state.lastname)}catch(err){return ''}})() || ''}\`"`;
+exports[`text-parses on parse creates propper template function - mixed with text 1`] = `"\`\${(()=>{try{return (st.firstname)}catch(err){return ''}})() || ''} and \${(()=>{try{return (st.lastname)}catch(err){return ''}})() || ''}\`"`;
 
-exports[`text-parses on parse creates propper template function - properties in method call 1`] = `"\`\${(()=>{try{return (new Date(state.year, state.month, state.day).toString())}catch(err){return ''}})() || ''}\`"`;
+exports[`text-parses on parse creates propper template function - properties in method call 1`] = `"\`\${(()=>{try{return (new Date(st.year, st.month, st.day).toString())}catch(err){return ''}})() || ''}\`"`;
 
-exports[`text-parses on parse creates propper template function - simple js 1`] = `"\`\${(()=>{try{return (state.firstname + state.lastname)}catch(err){return ''}})() || ''}\`"`;
+exports[`text-parses on parse creates propper template function - simple js 1`] = `"\`\${(()=>{try{return (st.firstname + st.lastname)}catch(err){return ''}})() || ''}\`"`;
 
-exports[`text-parses on parse creates propper template function - single property 1`] = `"\`\${(()=>{try{return (state.fullname)}catch(err){return ''}})() || ''}\`"`;
+exports[`text-parses on parse creates propper template function - single property 1`] = `"\`\${(()=>{try{return (st.fullname)}catch(err){return ''}})() || ''}\`"`;
 
-exports[`text-parses on parse creates propper template function that can rescope - method call 1`] = `"\`\${(()=>{try{return (state.fullname.toString())}catch(err){return ''}})() || ''}\`"`;
+exports[`text-parses on parse creates propper template function that can rescope - method call 1`] = `"\`\${(()=>{try{return (st.fullname.toString())}catch(err){return ''}})() || ''}\`"`;
 
-exports[`text-parses on parse creates propper template function that can rescope - mixed with text 1`] = `"\`\${(()=>{try{return (state.firstname)}catch(err){return ''}})() || ''} and \${(()=>{try{return (state.lastname)}catch(err){return ''}})() || ''}\`"`;
+exports[`text-parses on parse creates propper template function that can rescope - mixed with text 1`] = `"\`\${(()=>{try{return (st.firstname)}catch(err){return ''}})() || ''} and \${(()=>{try{return (st.lastname)}catch(err){return ''}})() || ''}\`"`;
 
-exports[`text-parses on parse creates propper template function that can rescope - properties in method call 1`] = `"\`\${(()=>{try{return (new Date(state.year, state.month, state.day).toString())}catch(err){return ''}})() || ''}\`"`;
+exports[`text-parses on parse creates propper template function that can rescope - properties in method call 1`] = `"\`\${(()=>{try{return (new Date(st.year, st.month, st.day).toString())}catch(err){return ''}})() || ''}\`"`;
 
-exports[`text-parses on parse creates propper template function that can rescope - simple js 1`] = `"\`\${(()=>{try{return (state.firstname + state.lastname)}catch(err){return ''}})() || ''}\`"`;
+exports[`text-parses on parse creates propper template function that can rescope - simple js 1`] = `"\`\${(()=>{try{return (st.firstname + st.lastname)}catch(err){return ''}})() || ''}\`"`;
 
-exports[`text-parses on parse creates propper template function that can rescope - single property 1`] = `"\`\${(()=>{try{return (state.fullname)}catch(err){return ''}})() || ''}\`"`;
+exports[`text-parses on parse creates propper template function that can rescope - single property 1`] = `"\`\${(()=>{try{return (st.fullname)}catch(err){return ''}})() || ''}\`"`;
 
-exports[`text-parses on parse creates propper value function - method call 1`] = `"(() => { try { return (state.fullname.toString()) } catch (err) { return } })()"`;
+exports[`text-parses on parse creates propper value function - method call 1`] = `"(() => { try { return (st.fullname.toString()) } catch (err) { return } })()"`;
 
 exports[`text-parses on parse creates propper value function - mixed with text 1`] = `"(() => { try { return (null) } catch (err) { return } })()"`;
 
-exports[`text-parses on parse creates propper value function - properties in method call 1`] = `"(() => { try { return (new Date(state.year, state.month, state.day).toString()) } catch (err) { return } })()"`;
+exports[`text-parses on parse creates propper value function - properties in method call 1`] = `"(() => { try { return (new Date(st.year, st.month, st.day).toString()) } catch (err) { return } })()"`;
 
-exports[`text-parses on parse creates propper value function - simple js 1`] = `"(() => { try { return (state.firstname + state.lastname) } catch (err) { return } })()"`;
+exports[`text-parses on parse creates propper value function - simple js 1`] = `"(() => { try { return (st.firstname + st.lastname) } catch (err) { return } })()"`;
 
-exports[`text-parses on parse creates propper value function - single property 1`] = `"(() => { try { return (state.fullname) } catch (err) { return } })()"`;
+exports[`text-parses on parse creates propper value function - single property 1`] = `"(() => { try { return (st.fullname) } catch (err) { return } })()"`;
 
-exports[`text-parses on parse creates propper value function that can rescope - method call 1`] = `"(() => { try { return (state.fullname.toString()) } catch (err) { return } })()"`;
+exports[`text-parses on parse creates propper value function that can rescope - method call 1`] = `"(() => { try { return (st.fullname.toString()) } catch (err) { return } })()"`;
 
 exports[`text-parses on parse creates propper value function that can rescope - mixed with text 1`] = `"(() => { try { return (null) } catch (err) { return } })()"`;
 
-exports[`text-parses on parse creates propper value function that can rescope - properties in method call 1`] = `"(() => { try { return (new Date(state.year, state.month, state.day).toString()) } catch (err) { return } })()"`;
+exports[`text-parses on parse creates propper value function that can rescope - properties in method call 1`] = `"(() => { try { return (new Date(st.year, st.month, st.day).toString()) } catch (err) { return } })()"`;
 
-exports[`text-parses on parse creates propper value function that can rescope - simple js 1`] = `"(() => { try { return (state.firstname + state.lastname) } catch (err) { return } })()"`;
+exports[`text-parses on parse creates propper value function that can rescope - simple js 1`] = `"(() => { try { return (st.firstname + st.lastname) } catch (err) { return } })()"`;
 
-exports[`text-parses on parse creates propper value function that can rescope - single property 1`] = `"(() => { try { return (state.fullname) } catch (err) { return } })()"`;
+exports[`text-parses on parse creates propper value function that can rescope - single property 1`] = `"(() => { try { return (st.fullname) } catch (err) { return } })()"`;
 
 exports[`text-parses on parse return propper parsing result - method call 1`] = `
 Object {
@@ -46,11 +46,11 @@ Object {
     "fullname",
   ],
   "rawTokens": Array [
-    "{{state.fullname.toString()}}",
+    "{{st.fullname.toString()}}",
   ],
   "template": [Function],
   "tokens": Array [
-    "state.fullname.toString()",
+    "st.fullname.toString()",
   ],
   "value": [Function],
 }
@@ -63,13 +63,13 @@ Object {
     "lastname",
   ],
   "rawTokens": Array [
-    "{{state.firstname}}",
-    "{{state.lastname}}",
+    "{{st.firstname}}",
+    "{{st.lastname}}",
   ],
   "template": [Function],
   "tokens": Array [
-    "state.firstname",
-    "state.lastname",
+    "st.firstname",
+    "st.lastname",
   ],
   "value": [Function],
 }
@@ -83,11 +83,11 @@ Object {
     "day",
   ],
   "rawTokens": Array [
-    "{{new Date(state.year, state.month, state.day).toString()}}",
+    "{{new Date(st.year, st.month, st.day).toString()}}",
   ],
   "template": [Function],
   "tokens": Array [
-    "new Date(state.year, state.month, state.day).toString()",
+    "new Date(st.year, st.month, st.day).toString()",
   ],
   "value": [Function],
 }
@@ -100,11 +100,11 @@ Object {
     "lastname",
   ],
   "rawTokens": Array [
-    "{{state.firstname + state.lastname}}",
+    "{{st.firstname + st.lastname}}",
   ],
   "template": [Function],
   "tokens": Array [
-    "state.firstname + state.lastname",
+    "st.firstname + st.lastname",
   ],
   "value": [Function],
 }
@@ -116,11 +116,11 @@ Object {
     "fullname",
   ],
   "rawTokens": Array [
-    "{{state.fullname}}",
+    "{{st.fullname}}",
   ],
   "template": [Function],
   "tokens": Array [
-    "state.fullname",
+    "st.fullname",
   ],
   "value": [Function],
 }

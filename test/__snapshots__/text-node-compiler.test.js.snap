@@ -11,7 +11,7 @@ exports[`text-node-compiler on compile text node with expression 1`] = `
 "(() => {
   let textNode = document.createTextNode(\`Helloo \${ (() => {
     try {
-      return status.fullname;
+      return st.fullname;
     } catch (err) {
       return '';
     }

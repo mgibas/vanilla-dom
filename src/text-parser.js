@@ -1,9 +1,8 @@
 const esprima = require('esprima')
 const tagRegExp = /\{\{((?:.|\n)+?)\}\}/gm
-const defaultScope = 'state'
 
 class TextParser {
-  parse (source) {
+  parse (source, options) {
     if (!tagRegExp.test(source)) return
     let result = {
       rawTokens: [],
@@ -21,34 +20,28 @@ class TextParser {
         })
         .map((t)=> t.value)
         .join('.')
-        .split(defaultScope + '.')
+        .split(options.state + '.')
         .filter((val) => val) 
         .map((path) => path[path.length-1] === '.' ? path.slice(0,-1) : path)
 
       result.rawTokens.push(match)
       result.tokens.push(token)
       result.paths.push(...paths)
-      result.template = (scope, from = defaultScope) => {
+      result.template = () => {
         let template = source
         result.rawTokens.forEach((t) => {
           let token = t.slice(2,-2) 
-          if(scope) token = this._rescopeToken(token, from, scope)
           token = `\${(()=>{try{return (${token})}catch(err){return ''}})() || ''}` 
           template = template.replace(t, token)
         })  
         return `\`${template}\``
       }
-      result.value = (scope, from = defaultScope) => {
+      result.value = () => {
         let token = result.tokens.length === 1 ? result.tokens[0] : 'null'
-        if(scope) token = this._rescopeToken(token, from, scope)
-          
         return `(() => { try { return (${token}) } catch (err) { return } })()`
       }
     })
     return result
-  }
-  _rescopeToken(token, from, scope) {
-    return token.replace(new RegExp(scope + '.', 'g'), scope + '.') 
   }
 }
 

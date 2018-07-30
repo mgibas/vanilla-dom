@@ -4,8 +4,8 @@ const textNodeUpdateCompiler = require('./text-node-update-compiler')
 
 class TextNodeCompiler {
 
-  compile (parentName, node, rescoped) {
-    let parsed = textParser.parse(node.data)
+  compile (parentName, node, options) {
+    let parsed = textParser.parse(node.data, options)
      
     let mount = `
       let textNode = document.createTextNode(${parsed ? parsed.template() : '`' + node.data + '`'})
@@ -15,7 +15,7 @@ class TextNodeCompiler {
       return helpers.rewrite(helpers.closure(mount))
     return helpers.rewrite(helpers.closure(`
       ${mount}
-      ${textNodeUpdateCompiler.compile('textNode', parsed)} 
+      ${textNodeUpdateCompiler.compile('textNode', parsed, options)} 
     `))
   }
 }

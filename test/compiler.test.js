@@ -7,15 +7,22 @@ tagNodeCompiler.compile.mockReturnValue('console.log("COMPILED_TAG_NODE");')
 textNodeCompiler.compile.mockReturnValue('console.log("COMPILED_TEXT_NODE");')
 
 describe('compiler', () => {
+
   describe('on compile', () => {
+    let options
+    
+    beforeEach(()=>{
+      options = {state:'st'}
+    })
+    
     it('empty source', () => {
-      expect(compiler.compile('')).toMatchSnapshot();
+      expect(compiler.compile('', options)).toMatchSnapshot();
     })
     it('single tag node', () => {
-      expect(compiler.compile('<div></div>')).toMatchSnapshot();
+      expect(compiler.compile('<div></div>', options)).toMatchSnapshot();
     })
     it('multiple tag nodes', () => {
-      expect(compiler.compile('<div></div><p></p>')).toMatchSnapshot();
+      expect(compiler.compile('<div></div><p></p>', options)).toMatchSnapshot();
     })
     it('tag and text nodes', () => {
       expect(compiler.compile(`
@@ -25,23 +32,25 @@ describe('compiler', () => {
         ^ and empty line
 
         <p></p>
-      `)).toMatchSnapshot();
+      `, options)).toMatchSnapshot();
     })
     it('nested nodes', () => {
       expect(compiler.compile(`
         <div>
           <p>hello</p>
         </div>
-      `)).toMatchSnapshot();
+      `, options)).toMatchSnapshot();
     })
     it('default module type generates es6 export', () => {
-      expect(compiler.compile('')).toMatchSnapshot();
+      expect(compiler.compile('', options)).toMatchSnapshot();
     })
     it('commonjs module type', () => {
-      expect(compiler.compile('', {module: 'commonjs'})).toMatchSnapshot();
+      options.module = 'commonjs'
+      expect(compiler.compile('', options)).toMatchSnapshot();
     })
     it('simple closure export', () => {
-      expect(compiler.compile('', {module: 'closure'})).toMatchSnapshot();
+      options.module = 'closure'
+      expect(compiler.compile('', options)).toMatchSnapshot();
     })
   })
 })

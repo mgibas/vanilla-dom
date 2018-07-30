@@ -6,21 +6,27 @@ childrenCompiler.mockImplementation((a,b) => `CHILDREN_COMPILER_PART('${a}', '${
 tagNodeCompiler.compile.mockImplementation((a,b,c) => `TAG_NODE_COMPILER_PART('${a}', '${b}', '${c}')`)
 
 describe('repeat-node-update-compiler', () => {
+  let options = {
+    as:'items',
+    index:'i',
+    state:'st'
+  }
+
   describe('on compile', () => {
     it('single path', () => {
       let parsed = {
         paths: ['bars'],
-        value: () => 'state.bars'
+        value: () => 'st.bars'
       }
-      expect(compiler.compile('parent', {}, parsed, 'items', 'i'))
+      expect(compiler.compile('parent', {}, parsed, options))
         .toMatchSnapshot();
     })
     it('multipl paths', () => {
       let parsed = {
         paths: ['bars', 'foos'],
-        value: () => 'state.bars.push(...state.foos)'
+        value: () => 'st.bars.push(...st.foos)'
       }
-      expect(compiler.compile('parent', {}, parsed, 'items', 'i'))
+      expect(compiler.compile('parent', {}, parsed, options))
         .toMatchSnapshot();
     })
   })

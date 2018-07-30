@@ -4,10 +4,10 @@ const attributeUpdateCompiler= require('./attribute-update-compiler')
 
 class AttributesCompiler {
 
-  compile (elementName, attributes) {
+  compile (elementName, attributes, options) {
     return helpers.rewrite(Object.keys(attributes).map((a)=>{
 
-      let parsed = textParser.parse(attributes[a])
+      let parsed = textParser.parse(attributes[a], options)
       if(!parsed)
         return `${elementName}.setAttribute('${a}',\`${attributes[a]}\`);`
 
@@ -16,7 +16,7 @@ class AttributesCompiler {
         if(val) {
           ${elementName}.setAttribute('${a}', val);
         }
-        ${attributeUpdateCompiler.compile(elementName, a, parsed)}
+        ${attributeUpdateCompiler.compile(elementName, a, parsed, options)}
       `
     }).join(''))
   }

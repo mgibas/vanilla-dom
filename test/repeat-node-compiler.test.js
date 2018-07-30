@@ -9,11 +9,19 @@ tagNodeCompiler.compile.mockImplementation((a,b,c) => `TAG_NODE_COMPILER_PART('$
 repeatNodeUpdateCompiler.compile.mockImplementation((a,b,c,d) => `REPEAT_NODE_UPDATE_COMPILER_PART('${a}', '${b}', '${c===childrenCompiler}', '${d}')`)
 
 describe('repeat-node-compiler', () => {
+  let options = {state:'st'}
+
   describe('on compile', () => {
     it('simple token', () => {
       expect(compiler.compile('parent', {
-        attribs: { 'repeat-for': '{{state.items}}' }
-      }, childrenCompiler ))
+        attribs: { 'repeat-for': '{{st.items}}' }
+      }, childrenCompiler, options))
+        .toMatchSnapshot();
+    })
+    it('custom as and index', () => {
+      expect(compiler.compile('parent', {
+        attribs: { 'repeat-for': '{{st.items}}', 'repeat-as': 'rows', 'repeat-index': 'z'}
+      }, childrenCompiler, options))
         .toMatchSnapshot();
     })
   })

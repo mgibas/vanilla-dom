@@ -1,11 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`repeat-node-compiler on compile custom as and index 1`] = `
+"(() => {
+  let _nodes = [];
+  let rows = (() => {
+    try {
+      return st.items;
+    } catch (err) {
+      return;
+    }
+  })() || [];
+  let _createChildren = z => {
+    node = TAG_NODE_COMPILER_PART('parent', '[object Object]', 'true');
+    _nodes.push(node);
+  };
+  REPEAT_NODE_UPDATE_COMPILER_PART('parent', '[object Object]', 'false', '[object Object]');
+  for (let z = 0; z < rows.length; z++) {
+    _createChildren(z);
+  }
+})();"
+`;
+
 exports[`repeat-node-compiler on compile simple token 1`] = `
 "(() => {
   let _nodes = [];
   let items = (() => {
     try {
-      return state.items;
+      return st.items;
     } catch (err) {
       return;
     }
@@ -14,7 +35,7 @@ exports[`repeat-node-compiler on compile simple token 1`] = `
     node = TAG_NODE_COMPILER_PART('parent', '[object Object]', 'true');
     _nodes.push(node);
   };
-  REPEAT_NODE_UPDATE_COMPILER_PART('parent', '[object Object]', 'false', 'items');
+  REPEAT_NODE_UPDATE_COMPILER_PART('parent', '[object Object]', 'false', '[object Object]');
   for (let i = 0; i < items.length; i++) {
     _createChildren(i);
   }

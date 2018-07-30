@@ -1,8 +1,11 @@
 const compiler = require('../src/compiler')
 
 describe('compiler', () => {
+  let options
+
   describe('mounting compiled code', () => {
     beforeEach(()=>{
+      options = {state:'st', module: 'closue'}
       window.document.body.innerHTML = ''
     })
 
@@ -25,13 +28,13 @@ describe('compiler', () => {
     );
 
     it.each([
-      ['simple expressions', '<div foo="{{state.foo}}">{{state.fullname}}</div>'],
-      ['property expression on undefined property', '<div foo="{{state.missing}}">{{state.missing}}</div>'],
-      ['nested property expression on undefined property', '<div foo="{{state.missing.missingbad}}">{{state.missing.missingbad}}</div>'],
-      ['multiple expressions with undefined properties', '<div foo="{{state.missing}}">{{state.missing}}  and {{state.somissing}}</div>'],
-      ['multiple expressions', '<div foo="{{state.foo}} and {{state.bar}}">{{state.foo}} and {{state.bar}}</div>'],
-      ['javascript expressions', '<div sum="{{state.foo + state.bar + 2}}">{{state.foo + state.bar}}</div>'],
-      ['method expressions', '<div upper="{{state.fullname.toUpperCase()}}">{{state.firstname.toUpperCase()}}</div>']
+      ['simple expressions', '<div foo="{{st.foo}}">{{st.fullname}}</div>'],
+      ['property expression on undefined property', '<div foo="{{st.missing}}">{{st.missing}}</div>'],
+      ['nested property expression on undefined property', '<div foo="{{st.missing.missingbad}}">{{st.missing.missingbad}}</div>'],
+      ['multiple expressions with undefined properties', '<div foo="{{st.missing}}">{{st.missing}}  and {{st.somissing}}</div>'],
+      ['multiple expressions', '<div foo="{{st.foo}} and {{st.bar}}">{{st.foo}} and {{st.bar}}</div>'],
+      ['javascript expressions', '<div sum="{{st.foo + st.bar + 2}}">{{st.foo + st.bar}}</div>'],
+      ['method expressions', '<div upper="{{st.fullname.toUpperCase()}}">{{st.firstname.toUpperCase()}}</div>']
     ])('mount function evaluates given expression - %s',
       (testcaseName, template) => {
         let state = {
@@ -48,13 +51,13 @@ describe('compiler', () => {
     );
 
     it.each([
-      ['simple expressions', '<div foo="{{state.foo}}">{{state.fullname}}</div>'],
-      ['property expression on undefined property', '<div foo="{{state.missing}}">{{state.missing}}</div>'],
-      ['nested property expression on undefined property', '<div foo="{{state.missing.missingbad}}">{{state.missing.missingbad}}</div>'],
-      ['multiple expressions with undefined properties', '<div foo="{{state.missing}}">{{state.missing}}  and {{state.somissing}}</div>'],
-      ['multiple expressions', '<div foo="{{state.foo}} and {{state.bar}}">{{state.foo}} and {{state.bar}}</div>'],
-      ['javascript expressions', '<div sum="{{state.foo + state.bar + 2}}">{{state.foo + state.bar}}</div>'],
-      ['method expressions', '<div upper="{{state.fullname.toUpperCase()}}">{{state.firstname.toUpperCase()}}</div>']
+      ['simple expressions', '<div foo="{{st.foo}}">{{st.fullname}}</div>'],
+      ['property expression on undefined property', '<div foo="{{st.missing}}">{{st.missing}}</div>'],
+      ['nested property expression on undefined property', '<div foo="{{st.missing.missingbad}}">{{st.missing.missingbad}}</div>'],
+      ['multiple expressions with undefined properties', '<div foo="{{st.missing}}">{{st.missing}}  and {{st.somissing}}</div>'],
+      ['multiple expressions', '<div foo="{{st.foo}} and {{st.bar}}">{{st.foo}} and {{st.bar}}</div>'],
+      ['javascript expressions', '<div sum="{{st.foo + st.bar + 2}}">{{st.foo + st.bar}}</div>'],
+      ['method expressions', '<div upper="{{st.fullname.toUpperCase()}}">{{st.firstname.toUpperCase()}}</div>']
     ])('update state in dom on update call - %s',
       (testcaseName, template) => {
         let state = {
@@ -79,13 +82,13 @@ describe('compiler', () => {
 
     describe('arrays', () => {
       it.each([
-        ['simple', '<ul><li repeat-for="{{state.objects}}">{{items[i].name}}</li></ul>'],
-        ['custom "as"', '<ul><li repeat-for="{{state.objects}}" repeat-as="rows">{{rows[i].name}}</li></ul>'],
-        ['custom "index"', '<ul><li repeat-for="{{state.objects}}" repeat-index="b">{{items[b].name}}</li></ul>'],
-        ['js expression', '<ul><li repeat-for="{{state.objects.concat(state.objects)}}">{{items[i].name}}</li></ul>'],
+        ['simple', '<ul><li repeat-for="{{st.objects}}">{{items[i].name}}</li></ul>'],
+        ['custom "as"', '<ul><li repeat-for="{{st.objects}}" repeat-as="rows">{{rows[i].name}}</li></ul>'],
+        ['custom "index"', '<ul><li repeat-for="{{st.objects}}" repeat-index="b">{{items[b].name}}</li></ul>'],
+        ['js expression', '<ul><li repeat-for="{{st.objects.concat(st.objects)}}">{{items[i].name}}</li></ul>'],
         ['nested array', `
           <ul>
-            <li repeat-for="{{state.objects}}">
+            <li repeat-for="{{st.objects}}">
               <span repeat-for="{{items[i].chars}}" repeat-as="chars" repeat-index="j">{{chars[j]}}</span>
             </li>
           </ul>`]
@@ -98,13 +101,13 @@ describe('compiler', () => {
       })
 
       it.each([
-        ['simple', '<ul><li repeat-for="{{state.objects}}">{{items[i].name}}</li></ul>'],
-        ['custom "as"', '<ul><li repeat-for="{{state.objects}}" repeat-as="rows">{{rows[i].name}}</li></ul>'],
-        ['custom "index"', '<ul><li repeat-for="{{state.objects}}" repeat-index="b">{{items[b].name}}</li></ul>'],
-        ['js expression', '<ul><li repeat-for="{{state.objects.concat(state.objects)}}">{{items[i].name}}</li></ul>'],
+        ['simple', '<ul><li repeat-for="{{st.objects}}">{{items[i].name}}</li></ul>'],
+        ['custom "as"', '<ul><li repeat-for="{{st.objects}}" repeat-as="rows">{{rows[i].name}}</li></ul>'],
+        ['custom "index"', '<ul><li repeat-for="{{st.objects}}" repeat-index="b">{{items[b].name}}</li></ul>'],
+        ['js expression', '<ul><li repeat-for="{{st.objects.concat(st.objects)}}">{{items[i].name}}</li></ul>'],
         ['nested array', `
           <ul>
-            <li repeat-for="{{state.objects}}">
+            <li repeat-for="{{st.objects}}">
               <span repeat-for="{{items[i].chars}}" repeat-as="chars" repeat-index="j">{{chars[j]}}</span>
             </li>
           </ul>`]
@@ -127,7 +130,7 @@ describe('compiler', () => {
       ])('splicing - %s', (testcaseName, from, to) => {
         let state = {objects: from}
         let newState = {objects: to}
-        let compiled = compiler.compile('<ul><li repeat-for="{{state.objects}}">{{items[i].name}}</li></ul>', {module:'closure'})
+        let compiled = compiler.compile('<ul><li repeat-for="{{st.objects}}">{{items[i].name}}</li></ul>', {module:'closure'})
         let mount = eval(compiled)
         let update = mount(window.document.body, state)
 

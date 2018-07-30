@@ -6,13 +6,13 @@ describe('attribute-update-compiler', () => {
       expect(compiler.compile('testElement', 'foo',{
         paths: ['bar'],
         template: () => '"test-template-string"'
-      })).toMatchSnapshot();
+      }, {state: 'st'})).toMatchSnapshot();
     })
     it('multiple paths', () => {
       expect(compiler.compile('testElement', 'foo',{
         paths: ['bar', 'foo'],
         template: () => '"test-template-string"'
-      })).toMatchSnapshot();
+      }, {state: 'st'})).toMatchSnapshot();
     })
   })
 })

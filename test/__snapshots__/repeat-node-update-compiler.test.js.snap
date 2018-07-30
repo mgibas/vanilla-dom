@@ -3,9 +3,9 @@
 exports[`repeat-node-update-compiler on compile multipl paths 1`] = `
 "_reactivePaths['bars'] = _reactivePaths['bars'] || [];
 _reactivePaths['bars'].push({
-  update: state => {
+  update: st => {
     let prevCount = items.length;
-    items = state.bars.push(...state.foos);
+    items = st.bars.push(...st.foos);
     for (let i = items.length; i < prevCount; i++) {
       let toRemove = _nodes.pop();
       parent.removeChild(toRemove);
@@ -17,9 +17,9 @@ _reactivePaths['bars'].push({
 });
 _reactivePaths['foos'] = _reactivePaths['foos'] || [];
 _reactivePaths['foos'].push({
-  update: state => {
+  update: st => {
     let prevCount = items.length;
-    items = state.bars.push(...state.foos);
+    items = st.bars.push(...st.foos);
     for (let i = items.length; i < prevCount; i++) {
       let toRemove = _nodes.pop();
       parent.removeChild(toRemove);
@@ -34,9 +34,9 @@ _reactivePaths['foos'].push({
 exports[`repeat-node-update-compiler on compile single path 1`] = `
 "_reactivePaths['bars'] = _reactivePaths['bars'] || [];
 _reactivePaths['bars'].push({
-  update: state => {
+  update: st => {
     let prevCount = items.length;
-    items = state.bars;
+    items = st.bars;
     for (let i = items.length; i < prevCount; i++) {
       let toRemove = _nodes.pop();
       parent.removeChild(toRemove);
