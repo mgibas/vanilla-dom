@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`compiler on compile commonjs module type 1`] = `
-"let mount = (domRoot, st) => {
+"let mount = function (domRoot, st) {
   const _reactivePaths = [];
   return st => {
     Object.keys(_reactivePaths).forEach(key => {
@@ -15,7 +15,7 @@ module.exports = mount;"
 `;
 
 exports[`compiler on compile default module type generates es6 export 1`] = `
-"let mount = (domRoot, st) => {
+"let mount = function (domRoot, st) {
   const _reactivePaths = [];
   return st => {
     Object.keys(_reactivePaths).forEach(key => {
@@ -29,7 +29,7 @@ export default mount;"
 `;
 
 exports[`compiler on compile empty source 1`] = `
-"let mount = (domRoot, st) => {
+"let mount = function (domRoot, st) {
   const _reactivePaths = [];
   return st => {
     Object.keys(_reactivePaths).forEach(key => {
@@ -43,7 +43,7 @@ export default mount;"
 `;
 
 exports[`compiler on compile multiple tag nodes 1`] = `
-"let mount = (domRoot, st) => {
+"let mount = function (domRoot, st) {
   const _reactivePaths = [];
   console.log('COMPILED_TAG_NODE');
   console.log('COMPILED_TAG_NODE');
@@ -59,7 +59,7 @@ export default mount;"
 `;
 
 exports[`compiler on compile nested nodes 1`] = `
-"let mount = (domRoot, st) => {
+"let mount = function (domRoot, st) {
   const _reactivePaths = [];
   console.log('COMPILED_TEXT_NODE');
   console.log('COMPILED_TAG_NODE');
@@ -77,7 +77,7 @@ export default mount;"
 
 exports[`compiler on compile simple closure export 1`] = `
 "(() => {
-  let mount = (domRoot, st) => {
+  let mount = function (domRoot, st) {
     const _reactivePaths = [];
     return st => {
       Object.keys(_reactivePaths).forEach(key => {
@@ -92,7 +92,7 @@ exports[`compiler on compile simple closure export 1`] = `
 `;
 
 exports[`compiler on compile single tag node 1`] = `
-"let mount = (domRoot, st) => {
+"let mount = function (domRoot, st) {
   const _reactivePaths = [];
   console.log('COMPILED_TAG_NODE');
   return st => {
@@ -107,7 +107,7 @@ export default mount;"
 `;
 
 exports[`compiler on compile tag and text nodes 1`] = `
-"let mount = (domRoot, st) => {
+"let mount = function (domRoot, st) {
   const _reactivePaths = [];
   console.log('COMPILED_TEXT_NODE');
   console.log('COMPILED_TAG_NODE');

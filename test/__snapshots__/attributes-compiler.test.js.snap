@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`attributes-compiler on compile event handler attribute 1`] = `"element.addEventListener('click', this.handleClick);"`;
+
 exports[`attributes-compiler on compile multiple reactive expressioons in attribute value 1`] = `
 "var val = \`\${ (() => {
   try {

@@ -13,7 +13,7 @@ class Compiler {
     let dom = htmlparser.parseDOM(source) 
 
     let compiled = `
-      let mount = (domRoot, ${options.state}) => {
+      let mount = function (domRoot, ${options.state}) {
         const _reactivePaths = [];
 
         ${dom.map((d) => {

@@ -2,13 +2,12 @@ const compiler = require('../src/compiler')
 
 describe('compiler', () => {
   let options
+  beforeEach(()=>{
+    options = {state:'st', module: 'closure'}
+    window.document.body.innerHTML = ''
+  })
 
   describe('mounting compiled code', () => {
-    beforeEach(()=>{
-      options = {state:'st', module: 'closue'}
-      window.document.body.innerHTML = ''
-    })
-
     it.each([
       ['empty', ''], 
       ['simple', '<div></div>'], 
@@ -20,7 +19,7 @@ describe('compiler', () => {
       ['nested', `<div><p>hello</p></div>`]
     ])('mount function recreates given template on a given node - %s',
       (testcaseName, template) => {
-        let compiled = compiler.compile(template, {module:'closure'})
+        let compiled = compiler.compile(template, options)
         let mount = eval(compiled)
         mount(window.document.body)
         expect(window.document.body.innerHTML).toMatchSnapshot();
@@ -43,7 +42,7 @@ describe('compiler', () => {
           foo: 2,
           bar: 3
         }
-        let compiled = compiler.compile(template, {module:'closure'})
+        let compiled = compiler.compile(template, options)
         let mount = eval(compiled)
         mount(window.document.body, state)
         expect(window.document.body.innerHTML).toMatchSnapshot();
@@ -72,7 +71,7 @@ describe('compiler', () => {
           foo: 300,
           bar: 500
         }
-        let compiled = compiler.compile(template, {module:'closure'})
+        let compiled = compiler.compile(template, options)
         let mount = eval(compiled)
         let update = mount(window.document.body, state)
         update(updatedState)
@@ -94,7 +93,7 @@ describe('compiler', () => {
           </ul>`]
       ])('mounts array using initial state data - %s', (testcaseName, template) => {
         let state = {objects: [{name: 'foo', chars: ['f','o','o']},{name: 'bar', chars: ['b','a','r']}]}
-        let compiled = compiler.compile(template, {module:'closure'})
+        let compiled = compiler.compile(template, options)
         let mount = eval(compiled)
         mount(window.document.body, state)
         expect(window.document.body.innerHTML).toMatchSnapshot();
@@ -114,7 +113,7 @@ describe('compiler', () => {
       ])('update without array length change - %s', (testcaseName, template) => {
         let state = {objects: [{name: 'foo', chars: 'foo'.split('')},{name: 'bar', chars: 'bar'.split('')}]}
         let newState = {objects: [{name: 'foo-updated', chars: 'foo-updated'.split('')},{name: 'bar-updated', chars: 'bar-updated'.split('')}]}
-        let compiled = compiler.compile(template, {module:'closure'})
+        let compiled = compiler.compile(template, options)
         let mount = eval(compiled)
         let update = mount(window.document.body, state)
 
@@ -130,13 +129,25 @@ describe('compiler', () => {
       ])('splicing - %s', (testcaseName, from, to) => {
         let state = {objects: from}
         let newState = {objects: to}
-        let compiled = compiler.compile('<ul><li repeat-for="{{st.objects}}">{{items[i].name}}</li></ul>', {module:'closure'})
+        let compiled = compiler.compile('<ul><li repeat-for="{{st.objects}}">{{items[i].name}}</li></ul>', options)
         let mount = eval(compiled)
         let update = mount(window.document.body, state)
 
         update(newState)
 
         expect(window.document.body.innerHTML).toMatchSnapshot();
+      })
+    })
+    describe('events binding', () => {
+      it('simple click event', () => {
+        let ctx = {fire: jest.fn()}
+        let template = `<button on-click="this.fire" />`
+        let compiled = compiler.compile(template, options)
+        let mount = eval(compiled).bind(ctx)
+        mount(window.document.body, {})
+        let button = window.document.body.querySelector('button')
+        button.click()
+        expect(ctx.fire).toHaveBeenCalled()
       })
     })
   })

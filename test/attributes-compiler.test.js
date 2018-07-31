@@ -14,5 +14,8 @@ describe('attributes-compiler', () => {
     it('multiple reactive expressioons in attribute value', () => {
       expect(compiler.compile('element', {foo: '{{state.hey}} and {{state.blah}}'}, {})).toMatchSnapshot();
     })
+    it('event handler attribute', () => {
+      expect(compiler.compile('element', {'on-click': 'this.handleClick'}, {})).toMatchSnapshot();
+    })
   })
 })
