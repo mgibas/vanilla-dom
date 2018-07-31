@@ -1,5 +1,5 @@
 {
-  "name": "vanilla-dom",
+  "name": "@vanilla/vanilla-dom",
   "version": "0.0.3",
   "description": "HTML templates compiler for vanilla performance dynamic dom",
   "main": "src/compiler.js",
