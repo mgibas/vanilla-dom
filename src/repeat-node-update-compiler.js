@@ -9,7 +9,7 @@ class RepeatNodeUpdateCompiler {
         update: (${options.state}) => { 
           let prevCount = ${options.as}.length
           ${options.as} = ${parsed.value()}; 
-          _nodes.forEach((node) => { node.updaters.forEach((u) => u.update(state)) })
+          _nodes.forEach((node) => { node.updaters.forEach((u) => u.update(${options.state})) })
 
           for(let ${options.index}  = ${options.as}.length; ${options.index} < prevCount; ${options.index}++) {
             ${parentName}.removeChild(_nodes.pop().node);
