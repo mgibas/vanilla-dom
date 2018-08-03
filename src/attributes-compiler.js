@@ -7,7 +7,7 @@ class AttributesCompiler {
   compile (elementName, attributes, options) {
     return helpers.rewrite(Object.keys(attributes).map((a)=>{
       if(a.startsWith('on-'))
-        return `${elementName}.addEventListener('${a.replace('on-','')}', ${attributes[a]});`
+        return `${elementName}.addEventListener('${a.replace('on-','')}', ${attributes[a]}.bind(this));`
 
       let parsed = textParser.parse(attributes[a], options)
       if(!parsed)

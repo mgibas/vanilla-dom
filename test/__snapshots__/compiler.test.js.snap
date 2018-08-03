@@ -2,13 +2,9 @@
 
 exports[`compiler on compile commonjs module type 1`] = `
 "let mount = function (domRoot, st) {
-  const _reactivePaths = [];
+  const _updaters = [];
   return st => {
-    Object.keys(_reactivePaths).forEach(key => {
-      _reactivePaths[key].forEach(updater => {
-        updater.update(st);
-      });
-    });
+    _updaters.forEach(u => u.update(st));
   };
 };
 module.exports = mount;"
@@ -16,13 +12,9 @@ module.exports = mount;"
 
 exports[`compiler on compile default module type generates es6 export 1`] = `
 "let mount = function (domRoot, st) {
-  const _reactivePaths = [];
+  const _updaters = [];
   return st => {
-    Object.keys(_reactivePaths).forEach(key => {
-      _reactivePaths[key].forEach(updater => {
-        updater.update(st);
-      });
-    });
+    _updaters.forEach(u => u.update(st));
   };
 };
 export default mount;"
@@ -30,13 +22,9 @@ export default mount;"
 
 exports[`compiler on compile empty source 1`] = `
 "let mount = function (domRoot, st) {
-  const _reactivePaths = [];
+  const _updaters = [];
   return st => {
-    Object.keys(_reactivePaths).forEach(key => {
-      _reactivePaths[key].forEach(updater => {
-        updater.update(st);
-      });
-    });
+    _updaters.forEach(u => u.update(st));
   };
 };
 export default mount;"
@@ -44,15 +32,11 @@ export default mount;"
 
 exports[`compiler on compile multiple tag nodes 1`] = `
 "let mount = function (domRoot, st) {
-  const _reactivePaths = [];
+  const _updaters = [];
   console.log('COMPILED_TAG_NODE');
   console.log('COMPILED_TAG_NODE');
   return st => {
-    Object.keys(_reactivePaths).forEach(key => {
-      _reactivePaths[key].forEach(updater => {
-        updater.update(st);
-      });
-    });
+    _updaters.forEach(u => u.update(st));
   };
 };
 export default mount;"
@@ -60,16 +44,12 @@ export default mount;"
 
 exports[`compiler on compile nested nodes 1`] = `
 "let mount = function (domRoot, st) {
-  const _reactivePaths = [];
+  const _updaters = [];
   console.log('COMPILED_TEXT_NODE');
   console.log('COMPILED_TAG_NODE');
   console.log('COMPILED_TEXT_NODE');
   return st => {
-    Object.keys(_reactivePaths).forEach(key => {
-      _reactivePaths[key].forEach(updater => {
-        updater.update(st);
-      });
-    });
+    _updaters.forEach(u => u.update(st));
   };
 };
 export default mount;"
@@ -78,13 +58,9 @@ export default mount;"
 exports[`compiler on compile simple closure export 1`] = `
 "(() => {
   let mount = function (domRoot, st) {
-    const _reactivePaths = [];
+    const _updaters = [];
     return st => {
-      Object.keys(_reactivePaths).forEach(key => {
-        _reactivePaths[key].forEach(updater => {
-          updater.update(st);
-        });
-      });
+      _updaters.forEach(u => u.update(st));
     };
   };
   return mount;
@@ -93,14 +69,10 @@ exports[`compiler on compile simple closure export 1`] = `
 
 exports[`compiler on compile single tag node 1`] = `
 "let mount = function (domRoot, st) {
-  const _reactivePaths = [];
+  const _updaters = [];
   console.log('COMPILED_TAG_NODE');
   return st => {
-    Object.keys(_reactivePaths).forEach(key => {
-      _reactivePaths[key].forEach(updater => {
-        updater.update(st);
-      });
-    });
+    _updaters.forEach(u => u.update(st));
   };
 };
 export default mount;"
@@ -108,18 +80,14 @@ export default mount;"
 
 exports[`compiler on compile tag and text nodes 1`] = `
 "let mount = function (domRoot, st) {
-  const _reactivePaths = [];
+  const _updaters = [];
   console.log('COMPILED_TEXT_NODE');
   console.log('COMPILED_TAG_NODE');
   console.log('COMPILED_TEXT_NODE');
   console.log('COMPILED_TAG_NODE');
   console.log('COMPILED_TEXT_NODE');
   return st => {
-    Object.keys(_reactivePaths).forEach(key => {
-      _reactivePaths[key].forEach(updater => {
-        updater.update(st);
-      });
-    });
+    _updaters.forEach(u => u.update(st));
   };
 };
 export default mount;"

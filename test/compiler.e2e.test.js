@@ -138,16 +138,33 @@ describe('compiler', () => {
         expect(window.document.body.innerHTML).toMatchSnapshot();
       })
     })
-    describe('events binding', () => {
-      it('simple click event', () => {
+    describe('events handlers', () => {
+      it('simple handler', () => {
         let ctx = {fire: jest.fn()}
         let template = `<button on-click="this.fire" />`
         let compiled = compiler.compile(template, options)
         let mount = eval(compiled).bind(ctx)
         mount(window.document.body, {})
         let button = window.document.body.querySelector('button')
+        
         button.click()
+
         expect(ctx.fire).toHaveBeenCalled()
+      })
+
+      it('handler should be called with same scope', () => {
+        let testClass = class TestClass { foo(){this.bar()} }
+        let ctx = new testClass()
+        ctx.bar = jest.fn()
+        let template = `<button on-click="this.foo" />`
+        let compiled = compiler.compile(template, options)
+        let mount = eval(compiled).bind(ctx)
+        mount(window.document.body, {})
+        let button = window.document.body.querySelector('button')
+
+        button.click()
+
+        expect(ctx.bar).toHaveBeenCalled()
       })
     })
   })

@@ -2,12 +2,11 @@ const helpers = require('./helpers')
 
 class TextNodeUpdateCompiler {
   compile (elementName, parsed, options) {
-    return helpers.rewrite(parsed.paths.map((path) => `
-      _reactivePaths['${path}'] = _reactivePaths['${path}'] || [];
-      _reactivePaths['${path}'].push({ 
+    return helpers.rewrite(`
+      _updaters.push({ 
         update: (${options.state}) => {${elementName}.nodeValue = ${parsed.template()}}
       });
-      `).join(''))
+      `)
   }
 }
 

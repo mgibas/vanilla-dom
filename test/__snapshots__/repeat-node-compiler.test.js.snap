@@ -11,8 +11,14 @@ exports[`repeat-node-compiler on compile custom as and index 1`] = `
     }
   })() || [];
   let _createChildren = z => {
-    node = TAG_NODE_COMPILER_PART('parent', '[object Object]', 'true');
-    _nodes.push(node);
+    (() => {
+      let _updaters = [];
+      let node = TAG_NODE_COMPILER_PART('parent', '[object Object]', 'true');
+      _nodes.push({
+        node: node,
+        updaters: _updaters
+      });
+    })();
   };
   REPEAT_NODE_UPDATE_COMPILER_PART('parent', '[object Object]', 'false', '[object Object]');
   for (let z = 0; z < rows.length; z++) {
@@ -32,8 +38,14 @@ exports[`repeat-node-compiler on compile simple token 1`] = `
     }
   })() || [];
   let _createChildren = i => {
-    node = TAG_NODE_COMPILER_PART('parent', '[object Object]', 'true');
-    _nodes.push(node);
+    (() => {
+      let _updaters = [];
+      let node = TAG_NODE_COMPILER_PART('parent', '[object Object]', 'true');
+      _nodes.push({
+        node: node,
+        updaters: _updaters
+      });
+    })();
   };
   REPEAT_NODE_UPDATE_COMPILER_PART('parent', '[object Object]', 'false', '[object Object]');
   for (let i = 0; i < items.length; i++) {

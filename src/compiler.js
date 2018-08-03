@@ -14,18 +14,14 @@ class Compiler {
 
     let compiled = `
       let mount = function (domRoot, ${options.state}) {
-        const _reactivePaths = [];
+        const _updaters = [];
 
         ${dom.map((d) => {
           return this.compileNode('domRoot', d, options)
         }).join('')}    
         
         return (${options.state}) => {
-          Object.keys(_reactivePaths).forEach((key) => {
-            _reactivePaths[key].forEach((updater) =>{
-              updater.update(${options.state})
-            })
-          })
+          _updaters.forEach((u) => u.update(${options.state}))
         }
       }
     ` 

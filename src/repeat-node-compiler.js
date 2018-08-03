@@ -20,8 +20,11 @@ class RepeatNodeCompiler {
       let _nodes = []
       let ${options.as} = ${parsed.value()} || []
       let _createChildren = (${options.index}) => {
-        node = ${tagNodeCompiler.compile(parentName, node, childrenCompiler, opt)}
-        _nodes.push(node)
+        (() => {
+          let _updaters = []
+          let node = ${tagNodeCompiler.compile(parentName, node, childrenCompiler, opt)}
+          _nodes.push({node: node, updaters: _updaters})
+        })()
       }
       ${repeatNodeUpdateCompiler.compile(parentName, node, parsed, options)}
       for(let ${options.index} = 0; ${options.index} < ${options.as}.length; ${options.index}++) {

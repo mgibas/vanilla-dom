@@ -1,14 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`text-node-update-compiler on compile multiple paths 1`] = `
-"_reactivePaths['bar'] = _reactivePaths['bar'] || [];
-_reactivePaths['bar'].push({
-  update: st => {
-    testElement.nodeValue = 'test-template-string';
-  }
-});
-_reactivePaths['foo'] = _reactivePaths['foo'] || [];
-_reactivePaths['foo'].push({
+"_updaters.push({
   update: st => {
     testElement.nodeValue = 'test-template-string';
   }
@@ -16,8 +9,7 @@ _reactivePaths['foo'].push({
 `;
 
 exports[`text-node-update-compiler on compile single path 1`] = `
-"_reactivePaths['bar'] = _reactivePaths['bar'] || [];
-_reactivePaths['bar'].push({
+"_updaters.push({
   update: st => {
     testElement.nodeValue = 'test-template-string';
   }

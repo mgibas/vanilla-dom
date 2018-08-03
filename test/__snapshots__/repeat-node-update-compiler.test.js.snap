@@ -1,28 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`repeat-node-update-compiler on compile multipl paths 1`] = `
-"_reactivePaths['bars'] = _reactivePaths['bars'] || [];
-_reactivePaths['bars'].push({
+"_updaters.push({
   update: st => {
     let prevCount = items.length;
     items = st.bars.push(...st.foos);
+    _nodes.forEach(node => {
+      node.updaters.forEach(u => u.update(state));
+    });
     for (let i = items.length; i < prevCount; i++) {
-      let toRemove = _nodes.pop();
-      parent.removeChild(toRemove);
-    }
-    for (let i = prevCount; i < items.length; i++) {
-      _createChildren(i);
-    }
-  }
-});
-_reactivePaths['foos'] = _reactivePaths['foos'] || [];
-_reactivePaths['foos'].push({
-  update: st => {
-    let prevCount = items.length;
-    items = st.bars.push(...st.foos);
-    for (let i = items.length; i < prevCount; i++) {
-      let toRemove = _nodes.pop();
-      parent.removeChild(toRemove);
+      parent.removeChild(_nodes.pop().node);
     }
     for (let i = prevCount; i < items.length; i++) {
       _createChildren(i);
@@ -32,14 +19,15 @@ _reactivePaths['foos'].push({
 `;
 
 exports[`repeat-node-update-compiler on compile single path 1`] = `
-"_reactivePaths['bars'] = _reactivePaths['bars'] || [];
-_reactivePaths['bars'].push({
+"_updaters.push({
   update: st => {
     let prevCount = items.length;
     items = st.bars;
+    _nodes.forEach(node => {
+      node.updaters.forEach(u => u.update(state));
+    });
     for (let i = items.length; i < prevCount; i++) {
-      let toRemove = _nodes.pop();
-      parent.removeChild(toRemove);
+      parent.removeChild(_nodes.pop().node);
     }
     for (let i = prevCount; i < items.length; i++) {
       _createChildren(i);
