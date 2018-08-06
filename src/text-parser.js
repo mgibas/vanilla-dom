@@ -6,32 +6,28 @@ class TextParser {
     if (!tagRegExp.test(source)) return
     let result = {
       rawTokens: [],
-      tokens: [],
-      paths: []
+      tokens: []
     }
     
     let matches = source.match(tagRegExp)
     matches.forEach((match) => {
       let token = match.slice(2,-2) 
       let jsTokens = esprima.parse(token, { tokens: true, range: true }).tokens
-      let paths = jsTokens
-        .filter((t, i) => { 
-          return t.type === 'Identifier' && (i >= jsTokens.length -1 || jsTokens[i+1].value !== '(')  
-        })
-        .map((t)=> t.value)
-        .join('.')
-        .split(options.state + '.')
-        .filter((val) => val) 
-        .map((path) => path[path.length-1] === '.' ? path.slice(0,-1) : path)
 
       result.rawTokens.push(match)
       result.tokens.push(token)
-      result.paths.push(...paths)
       result.template = () => {
         let template = source
         result.rawTokens.forEach((t) => {
           let token = t.slice(2,-2) 
-          token = `\${(()=>{try{return (${token})}catch(err){return ''}})() || ''}` 
+          token = `\${(()=>{
+            try{
+              let val = (${token})
+              return val !== null && val !== undefined ? val : '' 
+            }catch(err){
+              return ''
+            }
+          })()}` 
           template = template.replace(t, token)
         })  
         return `\`${template}\``

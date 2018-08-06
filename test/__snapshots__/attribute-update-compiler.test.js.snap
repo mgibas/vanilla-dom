@@ -3,7 +3,15 @@
 exports[`attribute-update-compiler on compile multiple paths 1`] = `
 "_updaters.push({
   update: st => {
-    testElement.setAttribute('foo', 'test-template-string');
+    let val = 1;
+    if (val === null || val === undefined)
+      val = 'test-template-string';
+    if (typeof val === 'boolean' && val)
+      return testElement.setAttribute('foo', '');
+    if (val && typeof val === 'string' || typeof val === 'number') {
+      return testElement.setAttribute('foo', val);
+    }
+    testElement.removeAttribute('foo');
   }
 });"
 `;
@@ -11,7 +19,15 @@ exports[`attribute-update-compiler on compile multiple paths 1`] = `
 exports[`attribute-update-compiler on compile single path 1`] = `
 "_updaters.push({
   update: st => {
-    testElement.setAttribute('foo', 'test-template-string');
+    let val = 1;
+    if (val === null || val === undefined)
+      val = 'test-template-string';
+    if (typeof val === 'boolean' && val)
+      return testElement.setAttribute('foo', '');
+    if (val && typeof val === 'string' || typeof val === 'number') {
+      return testElement.setAttribute('foo', val);
+    }
+    testElement.removeAttribute('foo');
   }
 });"
 `;

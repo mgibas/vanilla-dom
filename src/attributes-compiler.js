@@ -13,13 +13,16 @@ class AttributesCompiler {
       if(!parsed)
         return `${elementName}.setAttribute('${a}',\`${attributes[a]}\`);`
 
-      return `
-        var val = ${parsed.template()};
-        if(val) {
+      return helpers.closure(`
+        let val = ${parsed.value()};
+        if(val === null || val === undefined) val = ${parsed.template()};
+        if(typeof val === 'boolean' && val)
+          ${elementName}.setAttribute('${a}', '');
+        if((val && typeof val === 'string') || typeof val === 'number') {
           ${elementName}.setAttribute('${a}', val);
         }
         ${attributeUpdateCompiler.compile(elementName, a, parsed, options)}
-      `
+      `)
     }).join(''))
   }
 }

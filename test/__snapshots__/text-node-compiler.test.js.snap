@@ -11,11 +11,12 @@ exports[`text-node-compiler on compile text node with expression 1`] = `
 "(() => {
   let textNode = document.createTextNode(\`Helloo \${ (() => {
     try {
-      return st.fullname;
+      let val = st.fullname;
+      return val !== null && val !== undefined ? val : '';
     } catch (err) {
       return '';
     }
-  })() || '' }!\`);
+  })() }!\`);
   parent.appendChild(textNode);
   UPDATE_COMPILER_PART;
 })();"

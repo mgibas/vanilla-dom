@@ -5,12 +5,14 @@ describe('attribute-update-compiler', () => {
     it('single path', () => {
       expect(compiler.compile('testElement', 'foo',{
         paths: ['bar'],
+        value: () => 1,
         template: () => '"test-template-string"'
       }, {state: 'st'})).toMatchSnapshot();
     })
     it('multiple paths', () => {
       expect(compiler.compile('testElement', 'foo',{
         paths: ['bar', 'foo'],
+        value: () => 1,
         template: () => '"test-template-string"'
       }, {state: 'st'})).toMatchSnapshot();
     })

@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`compiler mounting compiled code arrays mounts array using initial state data - access index 1`] = `"<ul><li>index: 0</li><li>index: 1</li></ul>"`;
+
 exports[`compiler mounting compiled code arrays mounts array using initial state data - custom "as" 1`] = `"<ul><li>foo</li><li>bar</li></ul>"`;
 
 exports[`compiler mounting compiled code arrays mounts array using initial state data - custom "index" 1`] = `"<ul><li>foo</li><li>bar</li></ul>"`;
@@ -44,6 +46,10 @@ exports[`compiler mounting compiled code arrays update without array length chan
 
 exports[`compiler mounting compiled code arrays update without array length change - simple 1`] = `"<ul><li>foo-updated</li><li>bar-updated</li></ul>"`;
 
+exports[`compiler mounting compiled code mount function evaluates given expression - boolean expression false 1`] = `"<div>false</div>"`;
+
+exports[`compiler mounting compiled code mount function evaluates given expression - boolean expression true 1`] = `"<div bar=\\"\\">true</div>"`;
+
 exports[`compiler mounting compiled code mount function evaluates given expression - javascript expressions 1`] = `"<div sum=\\"7\\">5</div>"`;
 
 exports[`compiler mounting compiled code mount function evaluates given expression - method expressions 1`] = `"<div upper=\\"MACIEJ GIBAS\\">MACIEJ</div>"`;
@@ -55,6 +61,10 @@ exports[`compiler mounting compiled code mount function evaluates given expressi
 exports[`compiler mounting compiled code mount function evaluates given expression - nested property expression on undefined property 1`] = `"<div></div>"`;
 
 exports[`compiler mounting compiled code mount function evaluates given expression - property expression on undefined property 1`] = `"<div></div>"`;
+
+exports[`compiler mounting compiled code mount function evaluates given expression - property expression with 0 as result 1`] = `"<div foo=\\"0\\">0</div>"`;
+
+exports[`compiler mounting compiled code mount function evaluates given expression - property expression with empty string as result 1`] = `"<div></div>"`;
 
 exports[`compiler mounting compiled code mount function evaluates given expression - simple expressions 1`] = `"<div foo=\\"2\\">Maciej Gibas</div>"`;
 
@@ -74,16 +84,28 @@ exports[`compiler mounting compiled code mount function recreates given template
 
 exports[`compiler mounting compiled code mount function recreates given template on a given node - with attributes 1`] = `"<div foo=\\"5\\" bar=\\"some\\"></div>"`;
 
+exports[`compiler mounting compiled code update state in dom on update call - boolean expression from empty to non empty 1`] = `"<div bar=\\"blah\\">blah</div>"`;
+
+exports[`compiler mounting compiled code update state in dom on update call - boolean expression from false to true 1`] = `"<div bar=\\"\\">true</div>"`;
+
+exports[`compiler mounting compiled code update state in dom on update call - boolean expression from non empty to empty 1`] = `"<div></div>"`;
+
+exports[`compiler mounting compiled code update state in dom on update call - boolean expression from true to false 1`] = `"<div>false</div>"`;
+
 exports[`compiler mounting compiled code update state in dom on update call - javascript expressions 1`] = `"<div sum=\\"802\\">800</div>"`;
 
 exports[`compiler mounting compiled code update state in dom on update call - method expressions 1`] = `"<div upper=\\"FOO BAR\\">FOO</div>"`;
 
 exports[`compiler mounting compiled code update state in dom on update call - multiple expressions 1`] = `"<div foo=\\"300 and 500\\">300 and 500</div>"`;
 
-exports[`compiler mounting compiled code update state in dom on update call - multiple expressions with undefined properties 1`] = `"<div foo=\\"\\">  and </div>"`;
+exports[`compiler mounting compiled code update state in dom on update call - multiple expressions with undefined properties 1`] = `"<div>  and </div>"`;
 
-exports[`compiler mounting compiled code update state in dom on update call - nested property expression on undefined property 1`] = `"<div foo=\\"\\"></div>"`;
+exports[`compiler mounting compiled code update state in dom on update call - nested property expression on undefined property 1`] = `"<div></div>"`;
 
-exports[`compiler mounting compiled code update state in dom on update call - property expression on undefined property 1`] = `"<div foo=\\"\\"></div>"`;
+exports[`compiler mounting compiled code update state in dom on update call - property expression from 0 value to non 0 1`] = `"<div foo=\\"1\\">1</div>"`;
+
+exports[`compiler mounting compiled code update state in dom on update call - property expression from non 0 to 0 value 1`] = `"<div foo=\\"0\\">0</div>"`;
+
+exports[`compiler mounting compiled code update state in dom on update call - property expression on undefined property 1`] = `"<div></div>"`;
 
 exports[`compiler mounting compiled code update state in dom on update call - simple expressions 1`] = `"<div foo=\\"300\\">Foo Bar</div>"`;

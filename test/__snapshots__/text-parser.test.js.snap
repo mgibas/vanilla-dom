@@ -1,24 +1,128 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`text-parses on parse creates propper template function - method call 1`] = `"\`\${(()=>{try{return (st.fullname.toString())}catch(err){return ''}})() || ''}\`"`;
+exports[`text-parses on parse creates propper template function - method call 1`] = `
+"\`\${(()=>{
+            try{
+              let val = (st.fullname.toString())
+              return val !== null && val !== undefined ? val : '' 
+            }catch(err){
+              return ''
+            }
+          })()}\`"
+`;
 
-exports[`text-parses on parse creates propper template function - mixed with text 1`] = `"\`\${(()=>{try{return (st.firstname)}catch(err){return ''}})() || ''} and \${(()=>{try{return (st.lastname)}catch(err){return ''}})() || ''}\`"`;
+exports[`text-parses on parse creates propper template function - mixed with text 1`] = `
+"\`\${(()=>{
+            try{
+              let val = (st.firstname)
+              return val !== null && val !== undefined ? val : '' 
+            }catch(err){
+              return ''
+            }
+          })()} and \${(()=>{
+            try{
+              let val = (st.lastname)
+              return val !== null && val !== undefined ? val : '' 
+            }catch(err){
+              return ''
+            }
+          })()}\`"
+`;
 
-exports[`text-parses on parse creates propper template function - properties in method call 1`] = `"\`\${(()=>{try{return (new Date(st.year, st.month, st.day).toString())}catch(err){return ''}})() || ''}\`"`;
+exports[`text-parses on parse creates propper template function - properties in method call 1`] = `
+"\`\${(()=>{
+            try{
+              let val = (new Date(st.year, st.month, st.day).toString())
+              return val !== null && val !== undefined ? val : '' 
+            }catch(err){
+              return ''
+            }
+          })()}\`"
+`;
 
-exports[`text-parses on parse creates propper template function - simple js 1`] = `"\`\${(()=>{try{return (st.firstname + st.lastname)}catch(err){return ''}})() || ''}\`"`;
+exports[`text-parses on parse creates propper template function - simple js 1`] = `
+"\`\${(()=>{
+            try{
+              let val = (st.firstname + st.lastname)
+              return val !== null && val !== undefined ? val : '' 
+            }catch(err){
+              return ''
+            }
+          })()}\`"
+`;
 
-exports[`text-parses on parse creates propper template function - single property 1`] = `"\`\${(()=>{try{return (st.fullname)}catch(err){return ''}})() || ''}\`"`;
+exports[`text-parses on parse creates propper template function - single property 1`] = `
+"\`\${(()=>{
+            try{
+              let val = (st.fullname)
+              return val !== null && val !== undefined ? val : '' 
+            }catch(err){
+              return ''
+            }
+          })()}\`"
+`;
 
-exports[`text-parses on parse creates propper template function that can rescope - method call 1`] = `"\`\${(()=>{try{return (st.fullname.toString())}catch(err){return ''}})() || ''}\`"`;
+exports[`text-parses on parse creates propper template function that can rescope - method call 1`] = `
+"\`\${(()=>{
+            try{
+              let val = (st.fullname.toString())
+              return val !== null && val !== undefined ? val : '' 
+            }catch(err){
+              return ''
+            }
+          })()}\`"
+`;
 
-exports[`text-parses on parse creates propper template function that can rescope - mixed with text 1`] = `"\`\${(()=>{try{return (st.firstname)}catch(err){return ''}})() || ''} and \${(()=>{try{return (st.lastname)}catch(err){return ''}})() || ''}\`"`;
+exports[`text-parses on parse creates propper template function that can rescope - mixed with text 1`] = `
+"\`\${(()=>{
+            try{
+              let val = (st.firstname)
+              return val !== null && val !== undefined ? val : '' 
+            }catch(err){
+              return ''
+            }
+          })()} and \${(()=>{
+            try{
+              let val = (st.lastname)
+              return val !== null && val !== undefined ? val : '' 
+            }catch(err){
+              return ''
+            }
+          })()}\`"
+`;
 
-exports[`text-parses on parse creates propper template function that can rescope - properties in method call 1`] = `"\`\${(()=>{try{return (new Date(st.year, st.month, st.day).toString())}catch(err){return ''}})() || ''}\`"`;
+exports[`text-parses on parse creates propper template function that can rescope - properties in method call 1`] = `
+"\`\${(()=>{
+            try{
+              let val = (new Date(st.year, st.month, st.day).toString())
+              return val !== null && val !== undefined ? val : '' 
+            }catch(err){
+              return ''
+            }
+          })()}\`"
+`;
 
-exports[`text-parses on parse creates propper template function that can rescope - simple js 1`] = `"\`\${(()=>{try{return (st.firstname + st.lastname)}catch(err){return ''}})() || ''}\`"`;
+exports[`text-parses on parse creates propper template function that can rescope - simple js 1`] = `
+"\`\${(()=>{
+            try{
+              let val = (st.firstname + st.lastname)
+              return val !== null && val !== undefined ? val : '' 
+            }catch(err){
+              return ''
+            }
+          })()}\`"
+`;
 
-exports[`text-parses on parse creates propper template function that can rescope - single property 1`] = `"\`\${(()=>{try{return (st.fullname)}catch(err){return ''}})() || ''}\`"`;
+exports[`text-parses on parse creates propper template function that can rescope - single property 1`] = `
+"\`\${(()=>{
+            try{
+              let val = (st.fullname)
+              return val !== null && val !== undefined ? val : '' 
+            }catch(err){
+              return ''
+            }
+          })()}\`"
+`;
 
 exports[`text-parses on parse creates propper value function - method call 1`] = `"(() => { try { return (st.fullname.toString()) } catch (err) { return } })()"`;
 
@@ -42,9 +146,6 @@ exports[`text-parses on parse creates propper value function that can rescope - 
 
 exports[`text-parses on parse return propper parsing result - method call 1`] = `
 Object {
-  "paths": Array [
-    "fullname",
-  ],
   "rawTokens": Array [
     "{{st.fullname.toString()}}",
   ],
@@ -58,10 +159,6 @@ Object {
 
 exports[`text-parses on parse return propper parsing result - mixed with text 1`] = `
 Object {
-  "paths": Array [
-    "firstname",
-    "lastname",
-  ],
   "rawTokens": Array [
     "{{st.firstname}}",
     "{{st.lastname}}",
@@ -77,11 +174,6 @@ Object {
 
 exports[`text-parses on parse return propper parsing result - properties in method call 1`] = `
 Object {
-  "paths": Array [
-    "year",
-    "month",
-    "day",
-  ],
   "rawTokens": Array [
     "{{new Date(st.year, st.month, st.day).toString()}}",
   ],
@@ -95,10 +187,6 @@ Object {
 
 exports[`text-parses on parse return propper parsing result - simple js 1`] = `
 Object {
-  "paths": Array [
-    "firstname",
-    "lastname",
-  ],
   "rawTokens": Array [
     "{{st.firstname + st.lastname}}",
   ],
@@ -112,9 +200,6 @@ Object {
 
 exports[`text-parses on parse return propper parsing result - single property 1`] = `
 Object {
-  "paths": Array [
-    "fullname",
-  ],
   "rawTokens": Array [
     "{{st.fullname}}",
   ],
