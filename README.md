@@ -27,7 +27,7 @@ npm install @vanilla-ftw/vanilla-dom
 ```
 
 ### Compile your template
-I created webpack loader [vanilla-dom-loader](http://github.com/mgibas/vanilla-dom-loader) that will take care of compilation but of there are some reasons you want to do it manually, here it is:
+I created webpack loader [vanilla-dom-loader](http://github.com/mgibas/vanilla-dom-loader) that will take care of compilation but if there are some reasons you want to do it manually, here it is:
 ```
 const compiler = require('@vanilla-ftw/vanilla-dom')
 const template = require('your-template.html')
