@@ -5,12 +5,12 @@ exports[`repeat-node-update-compiler on compile multipl paths 1`] = `
   update: st => {
     let prevCount = items.length;
     items = st.bars.push(...st.foos);
-    _nodes.forEach(node => {
-      node.updaters.forEach(u => u.update(st));
-    });
     for (let i = items.length; i < prevCount; i++) {
       parent.removeChild(_nodes.pop().node);
     }
+    _nodes.forEach(node => {
+      node.updaters.forEach(u => u.update(st));
+    });
     for (let i = prevCount; i < items.length; i++) {
       _createChildren(i);
     }
@@ -23,12 +23,12 @@ exports[`repeat-node-update-compiler on compile single path 1`] = `
   update: st => {
     let prevCount = items.length;
     items = st.bars;
-    _nodes.forEach(node => {
-      node.updaters.forEach(u => u.update(st));
-    });
     for (let i = items.length; i < prevCount; i++) {
       parent.removeChild(_nodes.pop().node);
     }
+    _nodes.forEach(node => {
+      node.updaters.forEach(u => u.update(st));
+    });
     for (let i = prevCount; i < items.length; i++) {
       _createChildren(i);
     }
