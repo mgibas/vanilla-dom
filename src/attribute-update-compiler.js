@@ -7,11 +7,15 @@ class AttributeUpdateCompiler {
           update: (${options.state}) => { 
             let val = ${parsed.value()};
             if(val === null || val === undefined) val = ${parsed.template()};
-
-            if(typeof val === 'boolean' && val)
-              return ${elementName}.setAttribute('${attribute}', '');
+            
+            let currentVal = ${elementName}.getAttribute('${attribute}')
+            if(typeof val === 'boolean' && val) {
+              if(currentVal !== '') ${elementName}.setAttribute('${attribute}', '');
+              return
+            }
             if((val && typeof val === 'string') || typeof val === 'number') {
-              return ${elementName}.setAttribute('${attribute}', val);
+              if(currentVal !== val) ${elementName}.setAttribute('${attribute}', val);
+              return
             }
             ${elementName}.removeAttribute('${attribute}')
           }

@@ -3,7 +3,9 @@
 exports[`text-node-update-compiler on compile multiple paths 1`] = `
 "_updaters.push({
   update: st => {
-    testElement.nodeValue = 'test-template-string';
+    let val = 'test-template-string';
+    if (testElement.nodeValue !== val)
+      testElement.nodeValue = val;
   }
 });"
 `;
@@ -11,7 +13,9 @@ exports[`text-node-update-compiler on compile multiple paths 1`] = `
 exports[`text-node-update-compiler on compile single path 1`] = `
 "_updaters.push({
   update: st => {
-    testElement.nodeValue = 'test-template-string';
+    let val = 'test-template-string';
+    if (testElement.nodeValue !== val)
+      testElement.nodeValue = val;
   }
 });"
 `;

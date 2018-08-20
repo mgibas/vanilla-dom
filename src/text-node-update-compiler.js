@@ -4,7 +4,10 @@ class TextNodeUpdateCompiler {
   compile (elementName, parsed, options) {
     return helpers.rewrite(`
       _updaters.push({ 
-        update: (${options.state}) => {${elementName}.nodeValue = ${parsed.template()}}
+        update: (${options.state}) => {
+          let val = ${parsed.template()}
+          if(${elementName}.nodeValue !== val) ${elementName}.nodeValue = val
+        }
       });
       `)
   }

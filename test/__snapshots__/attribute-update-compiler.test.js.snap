@@ -6,10 +6,16 @@ exports[`attribute-update-compiler on compile multiple paths 1`] = `
     let val = 1;
     if (val === null || val === undefined)
       val = 'test-template-string';
-    if (typeof val === 'boolean' && val)
-      return testElement.setAttribute('foo', '');
+    let currentVal = testElement.getAttribute('foo');
+    if (typeof val === 'boolean' && val) {
+      if (currentVal !== '')
+        testElement.setAttribute('foo', '');
+      return;
+    }
     if (val && typeof val === 'string' || typeof val === 'number') {
-      return testElement.setAttribute('foo', val);
+      if (currentVal !== val)
+        testElement.setAttribute('foo', val);
+      return;
     }
     testElement.removeAttribute('foo');
   }
@@ -22,10 +28,16 @@ exports[`attribute-update-compiler on compile single path 1`] = `
     let val = 1;
     if (val === null || val === undefined)
       val = 'test-template-string';
-    if (typeof val === 'boolean' && val)
-      return testElement.setAttribute('foo', '');
+    let currentVal = testElement.getAttribute('foo');
+    if (typeof val === 'boolean' && val) {
+      if (currentVal !== '')
+        testElement.setAttribute('foo', '');
+      return;
+    }
     if (val && typeof val === 'string' || typeof val === 'number') {
-      return testElement.setAttribute('foo', val);
+      if (currentVal !== val)
+        testElement.setAttribute('foo', val);
+      return;
     }
     testElement.removeAttribute('foo');
   }
