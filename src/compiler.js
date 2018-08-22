@@ -21,7 +21,9 @@ class Compiler {
         }).join('')}    
         
         return (${options.state}) => {
-          _updaters.forEach((u) => u.update(${options.state}))
+          for(let i = 0; i < _updaters.length; i++) {
+            _updaters[i].update(${options.state})
+          }
         }
       }
     ` 

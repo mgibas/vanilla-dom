@@ -2,7 +2,6 @@
 
 exports[`repeat-node-compiler on compile custom as and index 1`] = `
 "(() => {
-  let _nodes = [];
   let rows = (() => {
     try {
       return st.items;
@@ -10,26 +9,26 @@ exports[`repeat-node-compiler on compile custom as and index 1`] = `
       return;
     }
   })() || [];
+  let _nodes = new Array(rows.length);
   let _createChildren = z => {
     (() => {
       let _updaters = [];
       let node = TAG_NODE_COMPILER_PART('parent', '[object Object]', 'true');
-      _nodes.push({
+      _nodes[z] = {
         node: node,
         updaters: _updaters
-      });
+      };
     })();
   };
   REPEAT_NODE_UPDATE_COMPILER_PART('parent', '[object Object]', 'false', '[object Object]');
-  for (let z = 0; z < rows.length; z++) {
-    _createChildren(z);
+  for (let __createIndex = 0; __createIndex < rows.length; __createIndex++) {
+    _createChildren(__createIndex);
   }
 })();"
 `;
 
 exports[`repeat-node-compiler on compile simple token 1`] = `
 "(() => {
-  let _nodes = [];
   let items = (() => {
     try {
       return st.items;
@@ -37,19 +36,20 @@ exports[`repeat-node-compiler on compile simple token 1`] = `
       return;
     }
   })() || [];
+  let _nodes = new Array(items.length);
   let _createChildren = i => {
     (() => {
       let _updaters = [];
       let node = TAG_NODE_COMPILER_PART('parent', '[object Object]', 'true');
-      _nodes.push({
+      _nodes[i] = {
         node: node,
         updaters: _updaters
-      });
+      };
     })();
   };
   REPEAT_NODE_UPDATE_COMPILER_PART('parent', '[object Object]', 'false', '[object Object]');
-  for (let i = 0; i < items.length; i++) {
-    _createChildren(i);
+  for (let __createIndex = 0; __createIndex < items.length; __createIndex++) {
+    _createChildren(__createIndex);
   }
 })();"
 `;

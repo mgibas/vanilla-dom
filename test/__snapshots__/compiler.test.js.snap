@@ -4,7 +4,9 @@ exports[`compiler on compile commonjs module type 1`] = `
 "let mount = function (domRoot, st) {
   const _updaters = [];
   return st => {
-    _updaters.forEach(u => u.update(st));
+    for (let i = 0; i < _updaters.length; i++) {
+      _updaters[i].update(st);
+    }
   };
 };
 module.exports = mount;"
@@ -14,7 +16,9 @@ exports[`compiler on compile default module type generates es6 export 1`] = `
 "let mount = function (domRoot, st) {
   const _updaters = [];
   return st => {
-    _updaters.forEach(u => u.update(st));
+    for (let i = 0; i < _updaters.length; i++) {
+      _updaters[i].update(st);
+    }
   };
 };
 export default mount;"
@@ -24,7 +28,9 @@ exports[`compiler on compile empty source 1`] = `
 "let mount = function (domRoot, st) {
   const _updaters = [];
   return st => {
-    _updaters.forEach(u => u.update(st));
+    for (let i = 0; i < _updaters.length; i++) {
+      _updaters[i].update(st);
+    }
   };
 };
 export default mount;"
@@ -36,7 +42,9 @@ exports[`compiler on compile multiple tag nodes 1`] = `
   console.log('COMPILED_TAG_NODE');
   console.log('COMPILED_TAG_NODE');
   return st => {
-    _updaters.forEach(u => u.update(st));
+    for (let i = 0; i < _updaters.length; i++) {
+      _updaters[i].update(st);
+    }
   };
 };
 export default mount;"
@@ -49,7 +57,9 @@ exports[`compiler on compile nested nodes 1`] = `
   console.log('COMPILED_TAG_NODE');
   console.log('COMPILED_TEXT_NODE');
   return st => {
-    _updaters.forEach(u => u.update(st));
+    for (let i = 0; i < _updaters.length; i++) {
+      _updaters[i].update(st);
+    }
   };
 };
 export default mount;"
@@ -60,7 +70,9 @@ exports[`compiler on compile simple closure export 1`] = `
   let mount = function (domRoot, st) {
     const _updaters = [];
     return st => {
-      _updaters.forEach(u => u.update(st));
+      for (let i = 0; i < _updaters.length; i++) {
+        _updaters[i].update(st);
+      }
     };
   };
   return mount;
@@ -72,7 +84,9 @@ exports[`compiler on compile single tag node 1`] = `
   const _updaters = [];
   console.log('COMPILED_TAG_NODE');
   return st => {
-    _updaters.forEach(u => u.update(st));
+    for (let i = 0; i < _updaters.length; i++) {
+      _updaters[i].update(st);
+    }
   };
 };
 export default mount;"
@@ -87,7 +101,9 @@ exports[`compiler on compile tag and text nodes 1`] = `
   console.log('COMPILED_TAG_NODE');
   console.log('COMPILED_TEXT_NODE');
   return st => {
-    _updaters.forEach(u => u.update(st));
+    for (let i = 0; i < _updaters.length; i++) {
+      _updaters[i].update(st);
+    }
   };
 };
 export default mount;"
