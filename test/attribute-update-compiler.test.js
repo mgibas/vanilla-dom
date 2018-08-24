@@ -16,5 +16,11 @@ describe('attribute-update-compiler', () => {
         template: () => '"test-template-string"'
       }, {state: 'st'})).toMatchSnapshot();
     })
+    it('class attribute', () => {
+      expect(compiler.compile('testElement', 'class',{
+        value: () => 1,
+        template: () => '"awesome"'
+      }, {state: 'st'})).toMatchSnapshot();
+    })
   })
 })

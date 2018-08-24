@@ -30,7 +30,7 @@ exports[`attributes-compiler on compile multiple reactive expressioons in attrib
   if (typeof val === 'boolean' && val)
     element.setAttribute('foo', '');
   if (val && typeof val === 'string' || typeof val === 'number') {
-    element.setAttribute('foo', val);
+    COMPILED_SET_ATTRIBUTE;
   }
   UPDATE_COMPILER_PART;
 })();"
@@ -57,7 +57,7 @@ exports[`attributes-compiler on compile reactive expressioon attribute 1`] = `
   if (typeof val === 'boolean' && val)
     element.setAttribute('foo', '');
   if (val && typeof val === 'string' || typeof val === 'number') {
-    element.setAttribute('foo', val);
+    COMPILED_SET_ATTRIBUTE;
   }
   UPDATE_COMPILER_PART;
 })();"

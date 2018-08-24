@@ -19,7 +19,7 @@ class AttributesCompiler {
         if(typeof val === 'boolean' && val)
           ${elementName}.setAttribute('${a}', '');
         if((val && typeof val === 'string') || typeof val === 'number') {
-          ${elementName}.setAttribute('${a}', val);
+          ${attributeUpdateCompiler.compileSetAttribute(a, elementName)}
         }
         ${attributeUpdateCompiler.compile(elementName, a, parsed, options)}
       `)
