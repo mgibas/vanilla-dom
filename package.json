@@ -1,6 +1,6 @@
 {
   "name": "@vanilla-ftw/vanilla-dom",
-  "version": "0.0.13",
+  "version": "0.1.0-rc1",
   "description": "HTML templates compiler for vanilla performance dynamic dom",
   "main": "src/compiler.js",
   "repository": "https://github.com/mgibas/vanilla-dom.git",
