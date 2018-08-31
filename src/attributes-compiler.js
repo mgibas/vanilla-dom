@@ -22,23 +22,25 @@ class AttributesCompiler {
       }, '')
     
     if(preparedAttrs.filter((a) => a.parsed).length > 0) {
+      let valVar = `${elementName}AttribTmpVal`
+      let currValVar = `${elementName}CurAttribTmpVal`
       result.updates = `
-        let attribsVal
-        let attribsCurrentVal
+        var ${valVar}
+        var ${currValVar}
       `
       result.updates += preparedAttrs.filter((a) => a.parsed)
         .reduce((result, current) => {
           return result += `
-            attribsVal = ${current.parsed.value()};
-            if(attribsVal === null || attribsVal === undefined) attribsVal = ${current.parsed.template()};
+            ${valVar} = ${current.parsed.value()};
+            if(${valVar} === null || ${valVar} === undefined) ${valVar} = ${current.parsed.template()};
 
-            attribsCurrentVal = ${elementName}.getAttribute('${current.attribute}')
-            if(typeof attribsVal === 'boolean' && attribsVal) {
-              if(attribsCurrentVal !== '') ${elementName}.setAttribute('${current.attribute}', '');
+            ${currValVar} = ${elementName}.getAttribute('${current.attribute}')
+            if(typeof ${valVar} === 'boolean' && ${valVar}) {
+              if(${currValVar} !== '') ${elementName}.setAttribute('${current.attribute}', '');
             }
-            else if((attribsVal && typeof attribsVal === 'string') || typeof attribsVal === 'number') {
-              if(attribsCurrentVal != attribsVal) {
-                ${this.compileSetAttribute(current.attribute, elementName)} 
+            else if((${valVar} && typeof ${valVar} === 'string') || typeof ${valVar} === 'number') {
+              if(${currValVar} != ${valVar}) {
+                ${this.compileSetAttribute(current.attribute, elementName, valVar)} 
               }
             }
             else {
@@ -49,11 +51,11 @@ class AttributesCompiler {
     }
     return result
   }
-  compileSetAttribute(attribute, elementName) {
+  compileSetAttribute(attribute, elementName, valVar) {
     if(attribute === 'class')
-      return `${elementName}.className = attribsVal;`
+      return `${elementName}.className = ${valVar};`
     else 
-      return `${elementName}.setAttribute('${attribute}', attribsVal);` 
+      return `${elementName}.setAttribute('${attribute}', ${valVar});` 
   } 
 }
 

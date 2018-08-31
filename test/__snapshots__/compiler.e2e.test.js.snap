@@ -10,6 +10,8 @@ exports[`compiler mounting compiled code arrays mounts array using initial state
 
 exports[`compiler mounting compiled code arrays mounts array using initial state data - nested template 1`] = `"<ul><!--el_1--><li><p>some text</p><div><span>more</span></div></li><li><p>some text</p><div><span>more</span></div></li></ul>"`;
 
+exports[`compiler mounting compiled code arrays mounts array using initial state data - nested template with attributes 1`] = `"<ul><!--el_1--><li><p data-name=\\"foo\\">some text</p><div data-name=\\"foo\\"><span>more</span></div></li><li><p data-name=\\"bar\\">some text</p><div data-name=\\"bar\\"><span>more</span></div></li></ul>"`;
+
 exports[`compiler mounting compiled code arrays mounts array using initial state data - simple 1`] = `"<ul><!--el_1--><li>foo</li><li>bar</li></ul>"`;
 
 exports[`compiler mounting compiled code arrays mounts array using initial state data - with attributes 1`] = `"<ul><!--el_1--><li><p data-name=\\"foo\\">foo</p></li><li><p data-name=\\"bar\\">bar</p></li></ul>"`;

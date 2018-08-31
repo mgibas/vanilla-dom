@@ -108,6 +108,7 @@ describe('compiler', () => {
         ['js expression', '<ul><li repeat-for="{{st.objects.concat(st.objects)}}">{{items[i].name}}</li></ul>'],
         ['access index', '<ul><li repeat-for="{{st.objects}}">index: {{i}}</li></ul>'],
         ['nested template', '<ul><li repeat-for="{{st.objects}}"><p>some text</p><div><span>more</span></div></li></ul>'],
+        ['nested template with attributes', '<ul><li repeat-for="{{st.objects}}"><p data-name="{{items[i].name}}">some text</p><div data-name="{{items[i].name}}"><span>more</span></div></li></ul>'],
         ['with sybling', '<div><span repeat-for="{{st.objects}}">{{i}}</span><div>I like this place</div></div>']//,
         //['nested array', `
           //<ul>
