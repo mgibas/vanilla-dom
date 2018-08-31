@@ -106,12 +106,14 @@ describe('compiler', () => {
         ['custom "index"', '<ul><li repeat-for="{{st.objects}}" repeat-index="b">{{items[b].name}}</li></ul>'],
         ['js expression', '<ul><li repeat-for="{{st.objects.concat(st.objects)}}">{{items[i].name}}</li></ul>'],
         ['access index', '<ul><li repeat-for="{{st.objects}}">index: {{i}}</li></ul>'],
-        ['nested array', `
-          <ul>
-            <li repeat-for="{{st.objects}}">
-              <span repeat-for="{{items[i].chars}}" repeat-as="chars" repeat-index="j">{{chars[j]}}</span>
-            </li>
-          </ul>`]
+        ['nested template', '<ul><li repeat-for="{{st.objects}}"><p>some text</p><div><span>more</span></div></li></ul>'],
+        ['with sybling', '<div><span repeat-for="{{st.objects}}">{{i}}</span><div>I like this place</div></div>']//,
+        //['nested array', `
+          //<ul>
+            //<li repeat-for="{{st.objects}}">
+              //<span repeat-for="{{items[i].chars}}" repeat-as="chars" repeat-index="j">{{chars[j]}}</span>
+            //</li>
+          //</ul>`]
       ])('mounts array using initial state data - %s', (testcaseName, template) => {
         let state = {objects: [{name: 'foo', chars: ['f','o','o']},{name: 'bar', chars: ['b','a','r']}]}
         let compiled = compiler.compile(template, options)
@@ -124,13 +126,13 @@ describe('compiler', () => {
         ['simple', '<ul><li repeat-for="{{st.objects}}">{{items[i].name}}</li></ul>'],
         ['custom "as"', '<ul><li repeat-for="{{st.objects}}" repeat-as="rows">{{rows[i].name}}</li></ul>'],
         ['custom "index"', '<ul><li repeat-for="{{st.objects}}" repeat-index="b">{{items[b].name}}</li></ul>'],
-        ['js expression', '<ul><li repeat-for="{{st.objects.concat(st.objects)}}">{{items[i].name}}</li></ul>'],
-        ['nested array', `
-          <ul>
-            <li repeat-for="{{st.objects}}">
-              <span repeat-for="{{items[i].chars}}" repeat-as="chars" repeat-index="j">{{chars[j]}}</span>
-            </li>
-          </ul>`]
+        ['js expression', '<ul><li repeat-for="{{st.objects.concat(st.objects)}}">{{items[i].name}}</li></ul>']//,
+        //['nested array', `
+          //<ul>
+            //<li repeat-for="{{st.objects}}">
+              //<span repeat-for="{{items[i].chars}}" repeat-as="chars" repeat-index="j">{{chars[j]}}</span>
+            //</li>
+          //</ul>`]
       ])('update without array length change - %s', (testcaseName, template) => {
         let state = {objects: [{name: 'foo', chars: 'foo'.split('')},{name: 'bar', chars: 'bar'.split('')}]}
         let newState = {objects: [{name: 'foo-updated', chars: 'foo-updated'.split('')},{name: 'bar-updated', chars: 'bar-updated'.split('')}]}

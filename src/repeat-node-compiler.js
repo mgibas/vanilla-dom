@@ -1,36 +1,74 @@
-const helpers = require('./helpers')
 const textParser = require('./text-parser')
-const tagNodeCompiler = require('./tag-node-compiler.js')
-const repeatNodeUpdateCompiler = require('./repeat-node-update-compiler.js')
 
 class RepeatNodeCompiler {
 
-  compile (parentName, node, childrenCompiler, opt) {
-    let elName = `${parentName}_el`
-    let parsed = textParser.parse(node.attribs['repeat-for'], opt)
-    let options = Object.assign({
+  compile (node, nodeName, parentName, index, compiler, options) {
+    let templateVar = `${nodeName}_template`
+    let nodesVar = `${nodeName}.__vnodes`
+    let parsed = textParser.parse(node.attribs['repeat-for'], options)
+    let repeatOptions = Object.assign({
       as: node.attribs['repeat-as'] || 'items', 
       index: node.attribs['repeat-index'] || 'i'
-    }, opt)
+    }, options)
     delete node.attribs['repeat-for'] 
     delete node.attribs['repeat-as'] 
     delete node.attribs['repeat-index'] 
-    return helpers.rewrite(helpers.closure(
-    `
-      let ${options.as} = ${parsed.value()} || []
-      let _nodes = new Array(${options.as}.length)
-      let _createChildren = (${options.index}) => {
-        (() => {
-          let _updaters = []
-          let node = ${tagNodeCompiler.compile(parentName, node, childrenCompiler, opt)}
-          _nodes[${options.index}] = {node: node, updaters: _updaters}
-        })()
-      }
-      ${repeatNodeUpdateCompiler.compile(parentName, node, parsed, options)}
-      for(let __createIndex = 0; __createIndex < ${options.as}.length; __createIndex++) {
-        _createChildren(__createIndex)
-      } 
-    `)) 
+    let children = [].concat.apply([], node.children.map((n, index) => compiler(templateVar, n, options, index)))
+
+    return {
+      name: nodeName,
+      repeater: true,
+      def: `
+        var ${nodeName} = document.createComment('${nodeName}');
+        var ${templateVar} = document.createElement('${node.name}');
+        ${children.map((node) => {
+          return node.def          
+        }).join('\n')}    
+      `,
+      cloneDef: `var ${nodeName}_clone = ${parentName}_clone.childNodes[${index}];`,
+      mount: `
+        ${parentName}.appendChild(${nodeName})
+        ${children.map((node) => node.mount).join('\n')}
+      `,
+      update: `
+        ${nodesVar} = ${nodesVar} || [];
+        let prevLength = ${nodesVar}.length;
+        let ${repeatOptions.as} = ${parsed.value()} || []
+        let lastNode = prevLength ? ${nodesVar}[prevLength-1] : ${nodeName};
+
+        let createNode = (${repeatOptions.index}) => {
+          var ${templateVar}_clone  = ${templateVar}.cloneNode(true);
+          ${children.map((node) => {
+            return node.cloneDef          
+          }).join('\n')}    
+
+          ${templateVar}_clone.__vupdate = (${repeatOptions.state}) => {
+            let ${repeatOptions.as} = ${parsed.value()} || []
+            ${children.map((node) => {
+              return node.cloneUpdate 
+            }).join('\n')}    
+          }
+          
+          return ${templateVar}_clone;
+        }
+        for(let __removeIndex = prevLength - 1; __removeIndex >= ${repeatOptions.as}.length; __removeIndex--) {
+          ${parentName}.removeChild(${nodesVar}[__removeIndex]);
+        } 
+        
+        ${nodesVar}.length = ${repeatOptions.as}.length
+
+        for(let ${repeatOptions.index} = prevLength; ${repeatOptions.index} < ${repeatOptions.as}.length; ${repeatOptions.index}++) {
+          let newNode = createNode(${repeatOptions.index})
+          lastNode.parentNode.insertBefore(newNode, lastNode.nextSibling);
+          lastNode = newNode;
+          ${nodesVar}[${repeatOptions.index}] = newNode;
+        } 
+        for(let ${repeatOptions.index} = 0; ${repeatOptions.index} < ${repeatOptions.as}.length; ${repeatOptions.index}++) {
+          ${nodesVar}[${repeatOptions.index}].__vupdate(${repeatOptions.state})
+        } 
+      `,
+      cloneUpdate: ``,
+    }
   }
 }
 

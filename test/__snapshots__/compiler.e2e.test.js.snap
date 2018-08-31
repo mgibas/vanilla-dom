@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`compiler mounting compiled code arrays mounts array using initial state data - access index 1`] = `"<ul><li>index: 0</li><li>index: 1</li></ul>"`;
+exports[`compiler mounting compiled code arrays mounts array using initial state data - access index 1`] = `"<ul><!--el_1--><li>index: 0</li><li>index: 1</li></ul>"`;
 
-exports[`compiler mounting compiled code arrays mounts array using initial state data - custom "as" 1`] = `"<ul><li>foo</li><li>bar</li></ul>"`;
+exports[`compiler mounting compiled code arrays mounts array using initial state data - custom "as" 1`] = `"<ul><!--el_1--><li>foo</li><li>bar</li></ul>"`;
 
-exports[`compiler mounting compiled code arrays mounts array using initial state data - custom "index" 1`] = `"<ul><li>foo</li><li>bar</li></ul>"`;
+exports[`compiler mounting compiled code arrays mounts array using initial state data - custom "index" 1`] = `"<ul><!--el_1--><li>foo</li><li>bar</li></ul>"`;
 
-exports[`compiler mounting compiled code arrays mounts array using initial state data - js expression 1`] = `"<ul><li>foo</li><li>bar</li><li>foo</li><li>bar</li></ul>"`;
+exports[`compiler mounting compiled code arrays mounts array using initial state data - js expression 1`] = `"<ul><!--el_1--><li>foo</li><li>bar</li><li>foo</li><li>bar</li></ul>"`;
 
 exports[`compiler mounting compiled code arrays mounts array using initial state data - nested array 1`] = `
 "
@@ -19,19 +19,23 @@ exports[`compiler mounting compiled code arrays mounts array using initial state
           </ul>"
 `;
 
-exports[`compiler mounting compiled code arrays mounts array using initial state data - simple 1`] = `"<ul><li>foo</li><li>bar</li></ul>"`;
+exports[`compiler mounting compiled code arrays mounts array using initial state data - nested template 1`] = `"<ul><!--el_1--><li><p>some text</p><div><span>more</span></div></li><li><p>some text</p><div><span>more</span></div></li></ul>"`;
 
-exports[`compiler mounting compiled code arrays splicing - add item 1`] = `"<ul><li>foo</li><li>bar</li><li>oof</li></ul>"`;
+exports[`compiler mounting compiled code arrays mounts array using initial state data - simple 1`] = `"<ul><!--el_1--><li>foo</li><li>bar</li></ul>"`;
 
-exports[`compiler mounting compiled code arrays splicing - no array to array with items 1`] = `"<ul><li>foo</li><li>bar</li></ul>"`;
+exports[`compiler mounting compiled code arrays mounts array using initial state data - with sybling 1`] = `"<div><!--el_1--><span>0</span><span>1</span><div>I like this place</div></div>"`;
 
-exports[`compiler mounting compiled code arrays splicing - remove item 1`] = `"<ul><li>foo</li><li>oof</li></ul>"`;
+exports[`compiler mounting compiled code arrays splicing - add item 1`] = `"<ul><!--el_1--><li>foo</li><li>bar</li><li>oof</li></ul>"`;
 
-exports[`compiler mounting compiled code arrays update without array length change - custom "as" 1`] = `"<ul><li>foo-updated</li><li>bar-updated</li></ul>"`;
+exports[`compiler mounting compiled code arrays splicing - no array to array with items 1`] = `"<ul><!--el_1--><li>foo</li><li>bar</li></ul>"`;
 
-exports[`compiler mounting compiled code arrays update without array length change - custom "index" 1`] = `"<ul><li>foo-updated</li><li>bar-updated</li></ul>"`;
+exports[`compiler mounting compiled code arrays splicing - remove item 1`] = `"<ul><!--el_1--><li>foo</li><li>oof</li></ul>"`;
 
-exports[`compiler mounting compiled code arrays update without array length change - js expression 1`] = `"<ul><li>foo-updated</li><li>bar-updated</li><li>foo-updated</li><li>bar-updated</li></ul>"`;
+exports[`compiler mounting compiled code arrays update without array length change - custom "as" 1`] = `"<ul><!--el_1--><li>foo-updated</li><li>bar-updated</li></ul>"`;
+
+exports[`compiler mounting compiled code arrays update without array length change - custom "index" 1`] = `"<ul><!--el_1--><li>foo-updated</li><li>bar-updated</li></ul>"`;
+
+exports[`compiler mounting compiled code arrays update without array length change - js expression 1`] = `"<ul><!--el_1--><li>foo-updated</li><li>bar-updated</li><li>foo-updated</li><li>bar-updated</li></ul>"`;
 
 exports[`compiler mounting compiled code arrays update without array length change - nested array 1`] = `
 "
@@ -44,7 +48,7 @@ exports[`compiler mounting compiled code arrays update without array length chan
           </ul>"
 `;
 
-exports[`compiler mounting compiled code arrays update without array length change - simple 1`] = `"<ul><li>foo-updated</li><li>bar-updated</li></ul>"`;
+exports[`compiler mounting compiled code arrays update without array length change - simple 1`] = `"<ul><!--el_1--><li>foo-updated</li><li>bar-updated</li></ul>"`;
 
 exports[`compiler mounting compiled code mount function evaluates given expression - boolean expression false 1`] = `"<div>false</div>"`;
 
