@@ -23,21 +23,21 @@ class AttributesCompiler {
     
     if(preparedAttrs.filter((a) => a.parsed).length > 0) {
       result.updates = `
-        let val
-        let currentVal
+        let attribsVal
+        let attribsCurrentVal
       `
       result.updates += preparedAttrs.filter((a) => a.parsed)
         .reduce((result, current) => {
           return result += `
-            val = ${current.parsed.value()};
-            if(val === null || val === undefined) val = ${current.parsed.template()};
+            attribsVal = ${current.parsed.value()};
+            if(attribsVal === null || attribsVal === undefined) attribsVal = ${current.parsed.template()};
 
-            currentVal = ${elementName}.getAttribute('${current.attribute}')
-            if(typeof val === 'boolean' && val) {
-              if(currentVal !== '') ${elementName}.setAttribute('${current.attribute}', '');
+            attribsCurrentVal = ${elementName}.getAttribute('${current.attribute}')
+            if(typeof attribsVal === 'boolean' && attribsVal) {
+              if(attribsCurrentVal !== '') ${elementName}.setAttribute('${current.attribute}', '');
             }
-            else if((val && typeof val === 'string') || typeof val === 'number') {
-              if(currentVal != val) {
+            else if((attribsVal && typeof attribsVal === 'string') || typeof attribsVal === 'number') {
+              if(attribsCurrentVal != attribsVal) {
                 ${this.compileSetAttribute(current.attribute, elementName)} 
               }
             }
@@ -51,9 +51,9 @@ class AttributesCompiler {
   }
   compileSetAttribute(attribute, elementName) {
     if(attribute === 'class')
-      return `${elementName}.className = val;`
+      return `${elementName}.className = attribsVal;`
     else 
-      return `${elementName}.setAttribute('${attribute}', val);` 
+      return `${elementName}.setAttribute('${attribute}', attribsVal);` 
   } 
 }
 

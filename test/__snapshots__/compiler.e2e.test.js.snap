@@ -8,20 +8,11 @@ exports[`compiler mounting compiled code arrays mounts array using initial state
 
 exports[`compiler mounting compiled code arrays mounts array using initial state data - js expression 1`] = `"<ul><!--el_1--><li>foo</li><li>bar</li><li>foo</li><li>bar</li></ul>"`;
 
-exports[`compiler mounting compiled code arrays mounts array using initial state data - nested array 1`] = `
-"
-          <ul>
-            <li>
-              <span>f</span><span>o</span><span>o</span>
-            </li><li>
-              <span>b</span><span>a</span><span>r</span>
-            </li>
-          </ul>"
-`;
-
 exports[`compiler mounting compiled code arrays mounts array using initial state data - nested template 1`] = `"<ul><!--el_1--><li><p>some text</p><div><span>more</span></div></li><li><p>some text</p><div><span>more</span></div></li></ul>"`;
 
 exports[`compiler mounting compiled code arrays mounts array using initial state data - simple 1`] = `"<ul><!--el_1--><li>foo</li><li>bar</li></ul>"`;
+
+exports[`compiler mounting compiled code arrays mounts array using initial state data - with attributes 1`] = `"<ul><!--el_1--><li><p data-name=\\"foo\\">foo</p></li><li><p data-name=\\"bar\\">bar</p></li></ul>"`;
 
 exports[`compiler mounting compiled code arrays mounts array using initial state data - with sybling 1`] = `"<div><!--el_1--><span>0</span><span>1</span><div>I like this place</div></div>"`;
 
@@ -36,17 +27,6 @@ exports[`compiler mounting compiled code arrays update without array length chan
 exports[`compiler mounting compiled code arrays update without array length change - custom "index" 1`] = `"<ul><!--el_1--><li>foo-updated</li><li>bar-updated</li></ul>"`;
 
 exports[`compiler mounting compiled code arrays update without array length change - js expression 1`] = `"<ul><!--el_1--><li>foo-updated</li><li>bar-updated</li><li>foo-updated</li><li>bar-updated</li></ul>"`;
-
-exports[`compiler mounting compiled code arrays update without array length change - nested array 1`] = `
-"
-          <ul>
-            <li>
-              <span>f</span><span>o</span><span>o</span>
-            <span>-</span><span>u</span><span>p</span><span>d</span><span>a</span><span>t</span><span>e</span><span>d</span></li><li>
-              <span>b</span><span>a</span><span>r</span>
-            <span>-</span><span>u</span><span>p</span><span>d</span><span>a</span><span>t</span><span>e</span><span>d</span></li>
-          </ul>"
-`;
 
 exports[`compiler mounting compiled code arrays update without array length change - simple 1`] = `"<ul><!--el_1--><li>foo-updated</li><li>bar-updated</li></ul>"`;
 
