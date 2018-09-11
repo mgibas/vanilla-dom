@@ -102,7 +102,7 @@ describe('compiler', () => {
     describe('arrays', () => {
       it.each([
         ['simple', '<ul><li repeat-for="{{st.objects}}">{{items[i].name}}</li></ul>'],
-        ['with attributes', '<ul><li repeat-for="{{st.objects}}"><p data-name="{{items[i].name}}">{{items[i].name}}</p></li></ul>'],
+        ['with attributes', '<ul><li repeat-for="{{st.objects}}" data-static="hello" data-name="{{items[i].name}}"><p data-name="{{items[i].name}}">{{items[i].name}}</p></li></ul>'],
         ['custom "as"', '<ul><li repeat-for="{{st.objects}}" repeat-as="rows">{{rows[i].name}}</li></ul>'],
         ['custom "index"', '<ul><li repeat-for="{{st.objects}}" repeat-index="b">{{items[b].name}}</li></ul>'],
         ['js expression', '<ul><li repeat-for="{{st.objects.concat(st.objects)}}">{{items[i].name}}</li></ul>'],
@@ -190,6 +190,19 @@ describe('compiler', () => {
         button.click()
 
         expect(ctx.bar).toHaveBeenCalled()
+      })
+      it('on repeat-for node', () => {
+        let ctx = {fire: jest.fn()}
+        let template = `<div><button repeat-for="{{st.items}}" on-click="this.fire" /></div>`
+        let compiled = compiler.compile(template, options)
+        let mount = eval(compiled).bind(ctx)
+        mount(window.document.body, {items: [{},{}]})
+        let buttons = window.document.body.querySelectorAll('button')
+        
+        buttons[0].click()
+        buttons[1].click()
+
+        expect(ctx.fire).toHaveBeenCalledTimes(2)
       })
     })
   })

@@ -1,9 +1,11 @@
 const textParser = require('./text-parser')
+const attributesCompiler = require('./attributes-compiler.js')
 
 class RepeatNodeCompiler {
 
   compile (node, nodeName, parentName, index, compiler, options) {
     let templateVar = `${nodeName}_template`
+    let templateCloneVar = `${templateVar}_clone`
     let nodesVar = `${nodeName}.__vnodes`
     let parsed = textParser.parse(node.attribs['repeat-for'], options)
     let repeatOptions = Object.assign({
@@ -14,6 +16,8 @@ class RepeatNodeCompiler {
     delete node.attribs['repeat-as'] 
     delete node.attribs['repeat-index'] 
     let children = [].concat.apply([], node.children.map((n, index) => compiler(templateVar, n, options, index)))
+
+    let attributes = attributesCompiler.compile(templateCloneVar, node.attribs, options) 
 
     return {
       name: nodeName,
@@ -38,12 +42,14 @@ class RepeatNodeCompiler {
 
         let createNode = (${repeatOptions.index}) => {
           var ${templateVar}_clone  = ${templateVar}.cloneNode(true);
+          ${attributes.statics}
           ${children.map((node) => {
             return node.cloneDef          
           }).join('\n')}    
 
           ${templateVar}_clone.__vupdate = (${repeatOptions.state}) => {
             let ${repeatOptions.as} = ${parsed.value()} || []
+            ${attributes.updates}
             ${children.map((node) => {
               return node.cloneUpdate 
             }).join('\n')}    
