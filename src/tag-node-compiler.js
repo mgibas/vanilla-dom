@@ -13,6 +13,8 @@ class TagNodeCompiler {
       def: `var ${nodeName} = document.createElement('${node.name}');`,
       cloneDef: `var ${cloneName} = ${parentName}_clone.childNodes[${index}];`,
       mount: `${parentName}.appendChild(${nodeName});`,
+      events: attributes.events,
+      cloneEvents: cloneAttributes.events,
       statics: attributes.statics,
       cloneStatics: cloneAttributes.statics,
       update: attributes.updates,

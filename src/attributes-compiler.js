@@ -16,11 +16,14 @@ class AttributesCompiler {
     }
     result.statics = preparedAttrs.filter((a) => !a.parsed)
       .reduce((result, current) => {
-        if(current.attribute.startsWith('on-'))
-          return result += `${elementName}.addEventListener('${current.attribute.replace('on-','')}', ${current.value}.bind(this));`
-        return result += `${elementName}.setAttribute('${current.attribute}',\`${current.value}\`);`
+        return result += this.compileSetAttribute(current.attribute, elementName, '"' + current.value + '"')
       }, '')
     
+    result.events = preparedAttrs.filter((a) => !a.parsed && a.attribute.startsWith('on-'))
+      .reduce((result, current) => {
+        return result += `${elementName}.addEventListener('${current.attribute.replace('on-','')}', ${current.value}.bind(this));`
+      }, '')
+
     if(preparedAttrs.filter((a) => a.parsed).length > 0) {
       let valVar = `${elementName}AttribTmpVal`
       let currValVar = `${elementName}CurAttribTmpVal`
@@ -51,11 +54,11 @@ class AttributesCompiler {
     }
     return result
   }
-  compileSetAttribute(attribute, elementName, valVar) {
+  compileSetAttribute(attribute, elementName, value) {
     if(attribute === 'class')
-      return `${elementName}.className = ${valVar};`
+      return `${elementName}.className = ${value};`
     else 
-      return `${elementName}.setAttribute('${attribute}', ${valVar});` 
+      return `${elementName}.setAttribute('${attribute}', ${value});` 
   } 
 }
 

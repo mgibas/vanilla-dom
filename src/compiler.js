@@ -22,10 +22,11 @@ class Compiler {
         var _nodes = new Array(${compiledNodes.length}) 
 
         ${compiledNodes.map((node) => node.def).join('\n')}    
-        ${compiledNodes.map((node) => node.mount).join('\n')}    
         ${compiledNodes.map((node) => node.statics).join('\n')}    
+        ${compiledNodes.map((node) => node.events).join('\n')}    
         ${compiledNodes.map((node) => `${node.name}.__vupdate = (${options.state}) => {${node.update}}`).join('\n')}    
         ${compiledNodes.map((node, index) => `_nodes[${index}] = ${node.name};`).join('\n')}    
+        ${compiledNodes.map((node) => node.mount).join('\n')}    
 
         for(var i = 0; i < _nodes.length; i++) { _nodes[i].__vupdate(${options.state}); }
         return (${options.state}) => {
