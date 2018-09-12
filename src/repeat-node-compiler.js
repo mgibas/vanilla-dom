@@ -34,7 +34,12 @@ class RepeatNodeCompiler {
         ${parentName}.appendChild(${nodeName})
         ${children.map((node) => node.mount).join('\n')}
       `,
-      statics: templateAttributes.statics,
+      statics: `
+        ${templateAttributes.statics}
+        ${children.map((node) => {
+          return node.statics         
+        }).join('\n')}    
+      `,
       update: `
         ${nodesVar} = ${nodesVar} || [];
         let prevLength = ${nodesVar}.length;
@@ -45,7 +50,7 @@ class RepeatNodeCompiler {
           var ${templateVar}_clone  = ${templateVar}.cloneNode(true);
           ${templateCloneAttributes.events}
           ${children.map((node) => {
-            return node.cloneDef + '\n' + node.cloneStatics          
+            return node.cloneDef         
           }).join('\n')}    
 
           ${templateVar}_clone.__vupdate = (${repeatOptions.state}) => {
