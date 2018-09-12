@@ -14,7 +14,7 @@ exports[`compiler mounting compiled code arrays mounts array using initial state
 
 exports[`compiler mounting compiled code arrays mounts array using initial state data - simple 1`] = `"<ul><!--el_1--><li>foo</li><li>bar</li></ul>"`;
 
-exports[`compiler mounting compiled code arrays mounts array using initial state data - with attributes 1`] = `"<ul><!--el_1--><li data-static=\\"hello\\" data-name=\\"foo\\"><p data-name=\\"foo\\">foo</p></li><li data-static=\\"hello\\" data-name=\\"bar\\"><p data-name=\\"bar\\">bar</p></li></ul>"`;
+exports[`compiler mounting compiled code arrays mounts array using initial state data - with attributes 1`] = `"<ul><!--el_1--><li data-static=\\"hello\\" data-name=\\"foo\\"><p data-static=\\"hello\\" data-name=\\"foo\\">foo</p></li><li data-static=\\"hello\\" data-name=\\"bar\\"><p data-static=\\"hello\\" data-name=\\"bar\\">bar</p></li></ul>"`;
 
 exports[`compiler mounting compiled code arrays mounts array using initial state data - with sybling 1`] = `"<div><!--el_1--><span>0</span><span>1</span><div>I like this place</div></div>"`;
 

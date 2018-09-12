@@ -102,7 +102,7 @@ describe('compiler', () => {
     describe('arrays', () => {
       it.each([
         ['simple', '<ul><li repeat-for="{{st.objects}}">{{items[i].name}}</li></ul>'],
-        ['with attributes', '<ul><li repeat-for="{{st.objects}}" data-static="hello" data-name="{{items[i].name}}"><p data-name="{{items[i].name}}">{{items[i].name}}</p></li></ul>'],
+        ['with attributes', '<ul><li repeat-for="{{st.objects}}" data-static="hello" data-name="{{items[i].name}}"><p data-static="hello" data-name="{{items[i].name}}">{{items[i].name}}</p></li></ul>'],
         ['custom "as"', '<ul><li repeat-for="{{st.objects}}" repeat-as="rows">{{rows[i].name}}</li></ul>'],
         ['custom "index"', '<ul><li repeat-for="{{st.objects}}" repeat-index="b">{{items[b].name}}</li></ul>'],
         ['js expression', '<ul><li repeat-for="{{st.objects.concat(st.objects)}}">{{items[i].name}}</li></ul>'],

@@ -16,7 +16,6 @@ class RepeatNodeCompiler {
     delete node.attribs['repeat-as'] 
     delete node.attribs['repeat-index'] 
     let children = [].concat.apply([], node.children.map((n, index) => compiler(templateVar, n, options, index)))
-
     let attributes = attributesCompiler.compile(templateCloneVar, node.attribs, options) 
 
     return {
@@ -44,7 +43,7 @@ class RepeatNodeCompiler {
           var ${templateVar}_clone  = ${templateVar}.cloneNode(true);
           ${attributes.statics}
           ${children.map((node) => {
-            return node.cloneDef          
+            return node.cloneDef + '\n' + node.cloneStatics          
           }).join('\n')}    
 
           ${templateVar}_clone.__vupdate = (${repeatOptions.state}) => {
