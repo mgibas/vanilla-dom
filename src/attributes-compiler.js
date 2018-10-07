@@ -21,7 +21,7 @@ class AttributesCompiler {
     
     result.events = preparedAttrs.filter((a) => !a.parsed && a.attribute.startsWith('on-'))
       .reduce((result, current) => {
-        return result += `${elementName}.addEventListener('${current.attribute.replace('on-','')}', ${current.value}.bind(this));`
+        return result += `${elementName}.${current.attribute.replace('on-','on')} = ${current.value}.bind(this);`
       }, '')
 
     if(preparedAttrs.filter((a) => a.parsed).length > 0) {
